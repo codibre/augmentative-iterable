@@ -13,7 +13,7 @@
     "index.js",
     "lib"
   ],
-  "types": "index.d.js",
+  "types": "index.d.ts",
   "main": "dist/index.js",
   "scripts": {
     "doc": "npx typedoc",
