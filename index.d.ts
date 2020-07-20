@@ -2,32 +2,99 @@
 export declare const augments: unique symbol;
 export declare const baseIterable: unique symbol;
 export declare type AnyIterable<T> = Iterable<T> | AsyncIterable<T>;
-export declare const YIELD = 0;
-export declare const IGNORE = 1;
-export declare const STOP = 2;
-export declare type AugmentType = 0 | 1 | 2;
-export interface Augment<T> {
-  type: AugmentType;
-  action: (t: T) => any;
+/**
+ * Represents a predicate on type `T`.<br>
+ *   Example: `const evenNumber: Predicate<number> = n => (n % 2) === 0;`
+ * @typeparam T The type the predicate is defined on.
+ */
+export declare interface Predicate<T> {
+  /**
+   * Evaluates an item of type `T`.
+   * @param item The item evaluated.
+   * @returns `true` if the predicate passed on `item`; otherwise `false`.
+   */
+  (item: T): any;
+}
+/**
+ * Represents an asynchronous predicate on type `T`.<br>
+ *   Example: `const userExists: AsyncPredicate<User> = async user => !!(await getUser(user.id))`
+ * @typeparam T The type the predicate is defined on.
+ */
+interface AsyncPredicate<T> {
+  /**
+   * Asynchronously evaluates an item of type `T`.
+   * @param item The item evaluated.
+   * @returns A promise of `true` if the predicate passed on `item`; otherwise a promise of `false`.
+   */
+  (item: T): Promise<any> | any;
 }
 
-export interface IterableAugments<T, It extends AnyIterable<T>> {
-  [baseIterable]: It;
-  [augments]: Augment<T>[];
+/**
+ * Represents a mapping operation from type `T` to type `R`.<br>
+ *   Example: ``const userToPrintable: Mapper<User, string> = user => `${user.name} (id: ${user.id})` ``
+ * @typeparam T The source type.
+ * @typeparam R The destination type.
+ */
+interface Mapper<T, R> {
+  /**
+   * Maps an item of type `T` into an instance of type `R`.
+   * @param item The item to map.
+   * @returns The map of `item`.
+   */
+  (item: T): R;
 }
-export interface AugmentativeIterable<T> extends Iterable<T>, IterableAugments<T, Iterable<T>> {
-}
-export interface AugmentativeAsyncIterable<T> extends AsyncIterable<T>, IterableAugments<T, AnyIterable<T>> {
+/**
+ * Represents a asynchronous mapping operation from type `T` to type `R`.<br>
+ *   Example: `const idToUser: AsyncMapper<number, User> = async id => await getUser(id)`<br>
+ *   Note: in the example above, `getUser` function is already an [[AsyncMapper]].
+ * @typeparam T The source type.
+ * @typeparam R The destination type.
+ */
+interface AsyncMapper<T, R> {
+  /**
+   * Asynchronously maps an item of type `T` into an instance of type `R`.
+   * @param item The item to map.
+   * @returns A promise of the map of `item`.
+   */
+  (item: T): Promise<R> | R;
 }
 
-export declare type Action<T> = (t: T) => any;
-
-export declare function augmentativeForEach<T>(this: AugmentativeIterable<T>, action: Action<T>): void;
-export declare function augmentativeForEachAsync<T>(this: AugmentativeIterable<T>, action: Action<T>): Promise<void>;
-export declare function augmentativeToArray<T>(this: AugmentativeIterable<T>): T[];
-export declare function augmentativeToArrayAsync<T>(this: AugmentativeAsyncIterable<T>): T[];
-export declare function augmentIterable<T>(it: Iterable<T>, newAugment: Augment<T>): Iterable<any>;
-export declare function augmentIterableAsync<T>(it: AnyIterable<T>, newAugment: Augment<T>): AnyIterable<any>;
+export declare function augmentativeForEach<T>(
+  this: Iterable<T>,
+  action: Predicate<T>,
+): void;
+export declare function augmentativeForEachAsync<T>(
+  this: Iterable<T>,
+  action: AsyncPredicate<T>,
+): Promise<void>;
+export declare function augmentativeToArray<T>(this: Iterable<T>): T[];
+export declare function augmentativeToArrayAsync<T>(
+  this: AsyncIterable<T>,
+): T[];
+export declare function filterIterable<T>(
+  it: Iterable<T>,
+  predicate: Predicate<T>,
+): Iterable<T>;
+export declare function filterAsyncIterable<T>(
+  it: AnyIterable<T>,
+  predicate: AsyncPredicate<T>,
+): AnyIterable<T>;
+export declare function mapIterable<T, R>(
+  it: Iterable<T>,
+  mapper: Mapper<T, R>,
+): Iterable<T>;
+export declare function mapAsyncIterable<T, R>(
+  it: AnyIterable<T>,
+  mapper: AsyncMapper<T, R>,
+): AnyIterable<T>;
+export declare function takeWhileIterable<T>(
+  it: Iterable<T>,
+  predicate: Predicate<T>,
+): Iterable<T>;
+export declare function takeWhileAsyncIterable<T>(
+  it: AnyIterable<T>,
+  predicate: AsyncPredicate<T>,
+): AnyIterable<T>;
 
 /**
  * Pass the informed value to the callback and returns it's result
