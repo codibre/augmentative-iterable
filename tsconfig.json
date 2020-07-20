@@ -1,9 +1,11 @@
 {
   "extends": "@codibre/confs/tsconfig.json",
   "compilerOptions": {
-    "rootDir": "./src",
+    "allowJs": true,
+    "rootDir": ".",
     "outDir": "./dist",
     "declaration": true
   },
-  "include": ["./src"]
+  "include": ["lib", "index.js", "index.d.ts"],
+  "exclude": [".eslintrc.js"]
 }

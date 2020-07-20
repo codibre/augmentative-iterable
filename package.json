@@ -1,5 +1,5 @@
 {
-  "name": "boilerplate-base",
+  "name": "augmentative-iterable",
   "description": "This project is just a template for creation of new projects",
   "version": "0.0.1",
   "private": true,
@@ -10,15 +10,16 @@
     "node": ">=10"
   },
   "files": [
+    "index.js",
     "dist"
   ],
+  "types": "index.d.js",
   "main": "dist/index.js",
   "scripts": {
     "doc": "npx typedoc",
     "format": "prettier --write src/**/*.ts tst/**/*.ts",
     "lint": "npm run lint:format && npm run lint:style",
     "lint:fix": "npm run lint:format:fix && npm run lint:style:fix",
-    "build": "tsc",
     "test": "mocha",
     "test:coverage": "nyc npm test",
     "prepublishOnly": "npm run build && npm run test:coverage",
@@ -34,8 +35,8 @@
     "action:verify:update-modules:clean": "del-cli .check",
     "lint:format": "prettier --check '{src,test}/**/*.ts'",
     "lint:format:fix": "prettier --write '{src,test}/**/*.ts'",
-    "lint:style": "eslint '**/*.ts'",
-    "lint:style:fix": "eslint '**/*.ts' --fix"
+    "lint:style": "eslint index.js 'lib/*.js' '**/*.ts'",
+    "lint:style:fix": "eslint index.js 'lib/*.js' '**/*.ts' --fix"
   },
   "repository": {
     "type": "git",
@@ -50,15 +51,15 @@
   "devDependencies": {
     "@codibre/confs": "0.0.6",
     "@types/chai": "^4.2.11",
-    "@types/mocha": "^7.0.2",
-    "@types/node": "^14.0.14",
+    "@types/mocha": "^8.0.0",
+    "@types/node": "^14.0.23",
     "@types/sinon": "^9.0.4",
     "@types/sinon-chai": "^3.2.4",
-    "@typescript-eslint/eslint-plugin": "^3.5.0",
-    "@typescript-eslint/eslint-plugin-tslint": "^3.5.0",
-    "@typescript-eslint/parser": "^3.5.0",
+    "@typescript-eslint/eslint-plugin": "^3.6.1",
+    "@typescript-eslint/eslint-plugin-tslint": "^3.6.1",
+    "@typescript-eslint/parser": "^3.6.1",
     "chai": "^4.2.0",
-    "eslint": "^7.3.1",
+    "eslint": "^7.5.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
     "expect": "^26.1.0",
@@ -73,6 +74,6 @@
     "tslint": "^6.1.2",
     "typedoc": "^0.17.8",
     "typedoc-plugin-markdown": "^2.3.1",
-    "typescript": "^3.9.6"
+    "typescript": "^3.9.7"
   }
 }
