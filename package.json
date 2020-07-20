@@ -11,7 +11,7 @@
   },
   "files": [
     "index.js",
-    "dist"
+    "dist/**"
   ],
   "types": "index.d.js",
   "main": "dist/index.js",
