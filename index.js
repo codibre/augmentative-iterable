@@ -1,9 +1,9 @@
-const { augmentIterableAsync, augmentativeToArrayAsync, augmentativeForEachAsync } = require('./lib/augmentative-async-iterable');
-const { augmentIterable, augmentativeToArray, augmentativeForEach } = require('./lib/augmentative-iterable');
-const { resolver, resolverAsync } = require('./lib/augments-utils');
-const { YIELD, IGNORE, STOP } = require('./lib/augments-types');
+import { augmentIterableAsync, augmentativeToArrayAsync, augmentativeForEachAsync } from './lib/augmentative-async-iterable';
+import { augmentIterable, augmentativeToArray, augmentativeForEach } from './lib/augmentative-iterable';
+import { resolver, resolverAsync } from './lib/augments-utils';
+import { YIELD, IGNORE, STOP } from './lib/augments-types';
 
-module.exports = {
+export default {
   augmentIterable,
   augmentIterableAsync,
   augmentativeForEach,
