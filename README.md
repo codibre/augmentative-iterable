@@ -4,7 +4,7 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/950a74d0533a041725ce/test_coverage)](https://codeclimate.com/github/Codibre/augmentative-iterable/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/950a74d0533a041725ce/maintainability)](https://codeclimate.com/github/Codibre/augmentative-iterable/maintainability)
 [![Packages](https://david-dm.org/Codibre/augmentative-iterable.svg)](https://david-dm.org/Codibre/augmentative-iterable)
-[![npm version](https://badge.fury.io/js/%40codibre%2Faugmentative-iterable.svg)](https://badge.fury.io/js/%40codibre%2Faugmentative-iterable)
+[![npm version](https://badge.fury.io/js/augmentative-iterable.svg)](https://badge.fury.io/js/augmentative-iterable)
 
 This library offers some operations over iterables with the intention of a better performance overall.
 
