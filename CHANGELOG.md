@@ -1,5 +1,9 @@
 
-## 0.1.0
+## 0.1.1
+* 8a5a977 fixing project url
+* 27e4a75 setting private to false
+## v0.1.0
+* 5d2d427 0.1.0
 * 944fec8 removing unused scripts
 * 455813f fixing readme
 * 8123b98 updating README
