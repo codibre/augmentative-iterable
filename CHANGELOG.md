@@ -1,5 +1,8 @@
 
-## 0.1.2
+## 0.1.3
+* d2129f2 fixing wrong dependency
+## v0.1.2
+* 1c72c4e 0.1.2
 * bc7d877 fixing package reference on readme
 ## v0.1.1
 * 65993f9 0.1.1
