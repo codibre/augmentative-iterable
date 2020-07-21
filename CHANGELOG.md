@@ -1,5 +1,8 @@
 
-## 0.1.3
+## 0.1.4
+* b0ecfaf fixing readme
+## v0.1.3
+* e0b4170 0.1.3
 * d2129f2 fixing wrong dependency
 ## v0.1.2
 * 1c72c4e 0.1.2
