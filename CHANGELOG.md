@@ -1,7 +1,21 @@
 
+## 0.1.0
+* 944fec8 removing unused scripts
+* 455813f fixing readme
+* 8123b98 updating README
+* 8f90712 completing coverage
+* 83f11e5 creating unit tests
+* 7ab6391 fixing type issues
+* 6b7c2cd using spread operator
+* ef3a922 simplifying sync flow
+* 9ba11b3 Merge pull request #1 from Codibre/dependabot/npm_and_yarn/lodash-4.17.19
+* d9274d5 Bump lodash from 4.17.15 to 4.17.19
 ## v0.0.1
-* f923317 0.0.1
-* 3ec7be6 generaing docs
-* 5ca2030 updating readme
-* ab68f4e fixing description
-* 66d61a8 first commit
+* dc1c71e adding d.ts
+* 3c3024a fixing package
+* 1ba589e adding lib to library
+* 14a5547 adding lib to library
+* cc5d74c undoing
+* 9ace471 testing es6
+* 6cebe41 First commit
+* eb663cc Initial commit
