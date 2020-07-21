@@ -37,11 +37,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/codibre/boilerplate-base.git"
+    "url": "git+https://github.com/codibre/augmentative-iterable.git"
   },
-  "homepage": "https://github.com/codibre/boilerplate-base#readme",
+  "homepage": "https://github.com/codibre/augmentative-iterable#readme",
   "bugs": {
-    "url": "https://github.com/codibre/boilerplate-base/issues"
+    "url": "https://github.com/codibre/augmentative-iterable/issues"
   },
   "keywords": [],
   "license": "MIT",
