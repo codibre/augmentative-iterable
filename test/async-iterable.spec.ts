@@ -3,6 +3,7 @@ import {
   augmentativeToArrayAsync,
   filterAsyncIterable,
   takeWhileAsyncIterable,
+  augmentativeForEachAsync,
 } from '../index';
 import { expect } from 'chai';
 import { ObjectReadableMock } from 'stream-mock';
@@ -62,7 +63,7 @@ describe('AsyncIterable', () => {
     const original = [1, 2, 3];
 
     const map1 = mapAsyncIterable(original, (x) => x * 3);
-    const map2 = mapAsyncIterable(map1, (x) => x + 2);
+    const map2 = mapAsyncIterable(map1, async (x) => x + 2);
     const map3 = mapAsyncIterable(map2, (x) => x.toString());
 
     expect(await augmentativeToArrayAsync.call(map3)).to.be.eql([
@@ -75,10 +76,44 @@ describe('AsyncIterable', () => {
   it('should accumulate different augmentative arguments', async () => {
     const original = [1, 2, 3, 4, 5, 6];
 
-    const map1 = mapAsyncIterable(original, (x) => x * 3);
-    const map2 = filterAsyncIterable(map1, (x) => x % 2 === 0);
-    const map3 = takeWhileAsyncIterable(map2, (x) => x < 15);
+    const map1 = mapAsyncIterable(original, async (x) => x * 3);
+    const map2 = filterAsyncIterable(map1, async (x) => x % 2 === 0);
+    const map3 = takeWhileAsyncIterable(map2, async (x) => x < 15);
 
     expect(await augmentativeToArrayAsync.call(map3)).to.be.eql([6, 12]);
+  });
+
+  it('should process an for each properly', async () => {
+    const original = [1, 2, 3];
+    const result: number[] = [];
+
+    const map1 = mapAsyncIterable(original, async (x) => x * 3);
+    for await (const item of map1) {
+      result.push(item + 2);
+    }
+
+    expect(result).to.be.eql([5, 8, 11]);
+  });
+
+  it('should process an augmentative forEach properly', async () => {
+    const original = [1, 2, 3];
+    const result: number[] = [];
+
+    const map1 = mapAsyncIterable(original, async (x) => x * 3);
+    await augmentativeForEachAsync.call(map1, ((x: number) =>
+      result.push(x + 2)) as any);
+
+    expect(result).to.be.eql([5, 8, 11]);
+  });
+
+  it('should process an augmentative forEach with an async predicate properly', async () => {
+    const original = [1, 2, 3];
+    const result: number[] = [];
+
+    const map1 = mapAsyncIterable(original, async (x) => x * 3);
+    await augmentativeForEachAsync.call(map1, (async (x: number) =>
+      result.push(x + 2)) as any);
+
+    expect(result).to.be.eql([5, 8, 11]);
   });
 });

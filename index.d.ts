@@ -64,7 +64,7 @@ export declare function augmentativeForEach<T>(
   action: Predicate<T>,
 ): void;
 export declare function augmentativeForEachAsync<T>(
-  this: Iterable<T>,
+  this: AnyIterable<T>,
   action: AsyncPredicate<T>,
 ): Promise<void>;
 export declare function augmentativeToArray<T>(this: Iterable<T>): T[];

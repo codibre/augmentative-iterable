@@ -3,6 +3,7 @@ import {
   augmentativeToArray,
   filterIterable,
   takeWhileIterable,
+  augmentativeForEach,
 } from '../index';
 import { expect } from 'chai';
 
@@ -73,5 +74,27 @@ describe('Iterable', () => {
     const map3 = takeWhileIterable(map2, (x) => x < 15);
 
     expect(Array.from(map3)).to.be.eql([6, 12]);
+  });
+
+  it('should process an for each properly', () => {
+    const original = [1, 2, 3];
+    const result: number[] = [];
+
+    const map1 = mapIterable(original, (x) => x * 3);
+    for (const item of map1) {
+      result.push(item + 2);
+    }
+
+    expect(result).to.be.eql([5, 8, 11]);
+  });
+
+  it('should process an augmentative forEach properly', () => {
+    const original = [1, 2, 3];
+    const result: number[] = [];
+
+    const map1 = mapIterable(original, (x) => x * 3);
+    augmentativeForEach.call(map1, ((x: number) => result.push(x + 2)) as any);
+
+    expect(result).to.be.eql([5, 8, 11]);
   });
 });
