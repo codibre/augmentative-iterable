@@ -1,7 +1,7 @@
 {
   "name": "augmentative-iterable",
   "description": "This project is just a template for creation of new projects",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "private": true,
   "author": {
     "name": "Thiago O Santos <tos.oliveira@gmail.com>"
@@ -17,7 +17,6 @@
   "types": "index.d.ts",
   "main": "dist/index.js",
   "scripts": {
-    "doc": "npx typedoc",
     "format": "prettier --write src/**/*.ts tst/**/*.ts",
     "lint": "npm run lint:format && npm run lint:style",
     "lint:fix": "npm run lint:format:fix && npm run lint:style:fix",
@@ -25,7 +24,7 @@
     "test:coverage": "nyc npm test",
     "prepublishOnly": "npm run build && npm run test:coverage",
     "preversion": "npm run build && npm run test:coverage",
-    "version": "scripts/prepare $npm_package_version && npm run doc && git add .",
+    "version": "scripts/prepare $npm_package_version && git add .",
     "postversion": "git push && git push --tags",
     "clear": "npm run clear:build && npm run clear:modules",
     "clear:build": "del-cli ./dist",

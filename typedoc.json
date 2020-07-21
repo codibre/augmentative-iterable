@@ -4,18 +4,10 @@
   "theme": "markdown",
   "out": "docs",
   "readme": "none",
-  "name": "fluent-iterable",
+  "name": "augmentative-iterable",
   "includeVersion": true,
   "disableSources": true,
   "exclude": [
-    "src/fluentFunctions.ts",
-    "src/fluentAsyncFunctions.ts",
-    "src/sync/**",
-    "src/async/**",
-    "src/recipes/**",
-    "src/types-internal/**",
-    "src/helpers/**",
-    "src/mounters/**",
-    "index.ts"
+    "lib/**"
   ]
 }

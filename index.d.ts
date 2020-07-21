@@ -58,39 +58,90 @@ interface AsyncMapper<T, R> {
    */
   (item: T): Promise<R> | R;
 }
-
+/**
+ * Performs a forEach operation over the informed iterable applying the augmentative arguments. To use this function,
+ * you need to bind it to your iterable or call it with call, like .call(originalIterable, mapper)
+ * @param this: The original iterable you need to bind
+ * @param action the predicate function
+ */
 export declare function augmentativeForEach<T>(
   this: Iterable<T>,
   action: Predicate<T>,
 ): void;
+/**
+ * Performs a forEach operation over the informed async iterable applying the augmentative arguments. To use this function,
+ * you need to bind it to your async iterable or call it with call, like .call(originalIterable, mapper)
+ * @param this: The original iterable or async iterable you need to bind
+ * @param action the predicate function
+ */
 export declare function augmentativeForEachAsync<T>(
   this: AnyIterable<T>,
   action: AsyncPredicate<T>,
 ): Promise<void>;
+/**
+ * Performs an toArray operation over the informed iterable. To use this function,
+ * you need to bind it to your iterable or call it with call, like .call(originalIterable, mapper)
+ * @param this: The original iterable you need to bind
+ */
 export declare function augmentativeToArray<T>(this: Iterable<T>): T[];
+/**
+ * Performs an toArray operation over the informed async iterable. To use this function,
+ * you need to bind it to your iterable or use the call method, like this: .call(originalIterable, mapper)
+ * @param this: The original async iterable you need to bind
+ */
 export declare function augmentativeToArrayAsync<T>(
   this: AsyncIterable<T>,
 ): T[];
+/**
+ * Returns an iterable that returns only the values of the original iterable that passes the informed predicate
+ * @param it the original iterable
+ * @param mapper the predicate function
+ */
 export declare function filterIterable<T>(
   it: Iterable<T>,
   predicate: Predicate<T>,
 ): Iterable<T>;
+/**
+ * Returns an async iterable that returns only the values of the original async iterable that passes the informed predicate
+ * @param it the original async iterable or iterable
+ * @param mapper the predicate function
+ */
 export declare function filterAsyncIterable<T>(
   it: AnyIterable<T>,
   predicate: AsyncPredicate<T>,
 ): AsyncIterable<T>;
+/**
+ * Returns an iterable that maps each value of the iterable using the function provided
+ * @param it the original iterable
+ * @param mapper the mapping function
+ */
 export declare function mapIterable<T, R>(
   it: Iterable<T>,
   mapper: Mapper<T, R>,
 ): Iterable<T>;
+/**
+ * Returns an async iterable that maps each value of the async iterable using the function provided
+ * @param it the original async iterable or iterable
+ * @param mapper the mapping function
+ */
 export declare function mapAsyncIterable<T, R>(
   it: AnyIterable<T>,
   mapper: AsyncMapper<T, R>,
 ): AsyncIterable<T>;
+/**
+ * Returns an iterable that stop to iterate over the values of the original iterable when the informed condition resolves to true.
+ * @param it the original iterable
+ * @param predicate the stop condition
+ */
 export declare function takeWhileIterable<T>(
   it: Iterable<T>,
   predicate: Predicate<T>,
 ): Iterable<T>;
+/**
+ * Returns an async iterable that stop to iterate over the values of the original async iterable when the informed condition resolves to true.
+ * @param it the original iterable or async iterable
+ * @param predicate the stop condition
+ */
 export declare function takeWhileAsyncIterable<T>(
   it: AnyIterable<T>,
   predicate: AsyncPredicate<T>,
