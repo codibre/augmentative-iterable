@@ -78,7 +78,7 @@ export declare function filterIterable<T>(
 export declare function filterAsyncIterable<T>(
   it: AnyIterable<T>,
   predicate: AsyncPredicate<T>,
-): AnyIterable<T>;
+): AsyncIterable<T>;
 export declare function mapIterable<T, R>(
   it: Iterable<T>,
   mapper: Mapper<T, R>,
@@ -86,7 +86,7 @@ export declare function mapIterable<T, R>(
 export declare function mapAsyncIterable<T, R>(
   it: AnyIterable<T>,
   mapper: AsyncMapper<T, R>,
-): AnyIterable<T>;
+): AsyncIterable<T>;
 export declare function takeWhileIterable<T>(
   it: Iterable<T>,
   predicate: Predicate<T>,
@@ -94,7 +94,7 @@ export declare function takeWhileIterable<T>(
 export declare function takeWhileAsyncIterable<T>(
   it: AnyIterable<T>,
   predicate: AsyncPredicate<T>,
-): AnyIterable<T>;
+): AsyncIterable<T>;
 
 /**
  * Pass the informed value to the callback and returns it's result
