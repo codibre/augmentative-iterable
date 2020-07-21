@@ -1,5 +1,8 @@
 
-## 0.1.1
+## 0.1.2
+* bc7d877 fixing package reference on readme
+## v0.1.1
+* 65993f9 0.1.1
 * 8a5a977 fixing project url
 * 27e4a75 setting private to false
 ## v0.1.0
