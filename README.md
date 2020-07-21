@@ -80,7 +80,7 @@ Another thing we tried to do here is to avoid the use of async operation everyti
 
 ## And how all those helper methods works?
 
-This library actually have been made to have the base functionalities of [@codibre/fluent-iterable](https://github.com/Codibre/fluent-iterable), so, at this first version, it's not really simple to use as for some methods you have to rely on _bind_ or _call_ uses for some functions, but checkout our (index file)[./index.d.ts] where we described each exported function if you want to try it!
+This library actually have been made to have the base functionalities of [@codibre/fluent-iterable](https://github.com/Codibre/fluent-iterable), so, at this first version, it's not really simple to use as for some methods you have to rely on _bind_ or _call_ uses for some functions, but checkout our [index file](./index.d.ts) where we described each exported function if you want to try it!
 
 ## License
 
