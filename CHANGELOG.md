@@ -1,5 +1,9 @@
 
-## 0.1.4
+## 0.1.5
+* 920d2c1 creating more tests and assuming best performing resolverAsync
+* 901c672 removing building pipeline
+## v0.1.4
+* cb98ee3 0.1.4
 * b0ecfaf fixing readme
 ## v0.1.3
 * e0b4170 0.1.3
