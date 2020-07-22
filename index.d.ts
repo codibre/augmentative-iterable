@@ -164,6 +164,6 @@ export declare function resolver<T, R>(value: T, callback: (c: T) => R): R;
  * @param callback The callback
  */
 export declare function resolverAsync<T, R>(
-  promise: PromiseLike<T>,
+  promise: PromiseLike<T> | T,
   callback: (c: T) => R,
-): Promise<R>;
+): Promise<R> | R;
