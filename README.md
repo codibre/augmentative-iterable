@@ -1,4 +1,3 @@
-[![Actions Status](https://github.com/Codibre/augmentative-iterable/workflows/build/badge.svg)](https://github.com/Codibre/augmentative-iterable/actions)
 [![Actions Status](https://github.com/Codibre/augmentative-iterable/workflows/test/badge.svg)](https://github.com/Codibre/augmentative-iterable/actions)
 [![Actions Status](https://github.com/Codibre/augmentative-iterable/workflows/lint/badge.svg)](https://github.com/Codibre/augmentative-iterable/actions)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/950a74d0533a041725ce/test_coverage)](https://codeclimate.com/github/Codibre/augmentative-iterable/test_coverage)
