@@ -1,5 +1,8 @@
 
-## 0.1.5
+## 0.1.6
+* 1dd34f4 removing build badge, as it's not used
+## v0.1.5
+* 3a608a8 0.1.5
 * 920d2c1 creating more tests and assuming best performing resolverAsync
 * 901c672 removing building pipeline
 ## v0.1.4
