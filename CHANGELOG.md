@@ -1,5 +1,8 @@
 
-## 0.1.6
+## 0.1.7
+* a9dd9e0 adding strict mode
+## v0.1.6
+* 17cb106 0.1.6
 * 1dd34f4 removing build badge, as it's not used
 ## v0.1.5
 * 3a608a8 0.1.5
