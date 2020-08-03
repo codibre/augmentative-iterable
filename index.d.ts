@@ -167,3 +167,8 @@ export declare function resolverAsync<T, R>(
   promise: PromiseLike<T> | T,
   callback: (c: T) => R,
 ): Promise<R> | R;
+
+export declare function mutable<T>(iterable: Iterable<T>): Iterable<T>;
+export declare function mutableAsync<T>(
+  iterable: AsyncIterable<T>,
+): AsyncIterable<T>;
