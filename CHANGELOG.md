@@ -1,5 +1,9 @@
 
-## 1.0.0
+## 1.0.1
+* b3de8f2 calling return if needed
+* 0238c43 Preparing m-fluent
+## v1.0.0
+* 32190a7 1.0.0
 ## v0.1.7
 * a1493e4 0.1.7
 * a9dd9e0 adding strict mode
@@ -28,8 +32,10 @@
 * 944fec8 removing unused scripts
 * 455813f fixing readme
 * 8123b98 updating README
+## v0.0.3
 * 8f90712 completing coverage
 * 83f11e5 creating unit tests
+## v0.0.2
 * 7ab6391 fixing type issues
 * 6b7c2cd using spread operator
 * ef3a922 simplifying sync flow
