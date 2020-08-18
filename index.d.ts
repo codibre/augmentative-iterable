@@ -119,6 +119,7 @@ export declare function mapIterable<T, R>(
   it: Iterable<T>,
   mapper: Mapper<T, R>,
 ): Iterable<T>;
+
 /**
  * Returns an async iterable that maps each value of the async iterable using the function provided
  * @param it the original async iterable or iterable
@@ -143,6 +144,62 @@ export declare function takeWhileIterable<T>(
  * @param predicate the stop condition
  */
 export declare function takeWhileAsyncIterable<T>(
+  it: AnyIterable<T>,
+  predicate: AsyncPredicate<T>,
+): AsyncIterable<T>;
+
+/**
+ * Add a filter augment for the iterable. It will returns a new iterable if the informed is not already augmentative.
+ * @param it the original iterable
+ * @param mapper the predicate function
+ */
+export declare function addFilter<T>(
+  it: Iterable<T>,
+  predicate: Predicate<T>,
+): Iterable<T>;
+/**
+ * Add a filter augment for the async iterable. It will returns a new iterable if the informed is not already augmentative.
+ * @param it the original async iterable or iterable
+ * @param mapper the predicate function
+ */
+export declare function addFilterAsync<T>(
+  it: AnyIterable<T>,
+  predicate: AsyncPredicate<T>,
+): AsyncIterable<T>;
+/**
+ * Add a map augment for the iterable. It will returns a new iterable if the informed is not already augmentative.
+ * @param it the original iterable
+ * @param mapper the mapping function
+ */
+export declare function addMap<T, R>(
+  it: Iterable<T>,
+  mapper: Mapper<T, R>,
+): Iterable<T>;
+
+/**
+ * Add a map augment for the async iterable. It will returns a new iterable if the informed is not already augmentative.
+ * @param it the original async iterable or iterable
+ * @param mapper the mapping function
+ */
+export declare function addMapAsync<T, R>(
+  it: AnyIterable<T>,
+  mapper: AsyncMapper<T, R>,
+): AsyncIterable<T>;
+/**
+ * Add a takeWhile augment for the iterable. It will returns a new iterable if the informed is not already augmentative.
+ * @param it the original iterable
+ * @param predicate the stop condition
+ */
+export declare function addTakeWhile<T>(
+  it: Iterable<T>,
+  predicate: Predicate<T>,
+): Iterable<T>;
+/**
+ * Add a takeWhile augment for the async iterable. It will returns a new iterable if the informed is not already augmentative.
+ * @param it the original iterable or async iterable
+ * @param predicate the stop condition
+ */
+export declare function addTakeWhileAsync<T>(
   it: AnyIterable<T>,
   predicate: AsyncPredicate<T>,
 ): AsyncIterable<T>;
