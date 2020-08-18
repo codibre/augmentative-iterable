@@ -6,6 +6,9 @@ const {
   mapAsyncIterable,
   takeWhileAsyncIterable,
   mutableAsync,
+  addFilterAsync,
+  addMapAsync,
+  addTakeWhileAsync,
 } = require('./lib/augmentative-async-iterable');
 const {
   augmentativeToArray,
@@ -14,6 +17,9 @@ const {
   mapIterable,
   takeWhileIterable,
   mutable,
+  addFilter,
+  addMap,
+  addTakeWhile,
 } = require('./lib/augmentative-iterable');
 const {
   resolver,
@@ -26,6 +32,12 @@ const {
 } = require('./lib/augments-types');
 
 module.exports = {
+  addFilter,
+  addFilterAsync,
+  addMap,
+  addMapAsync,
+  addTakeWhile,
+  addTakeWhileAsync,
   augmentativeForEach,
   augmentativeForEachAsync,
   augmentativeToArray,

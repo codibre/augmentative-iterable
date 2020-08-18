@@ -1,5 +1,8 @@
 
-## 1.0.1
+## 1.1.0
+* fc51fa4 creating mutable operations over augmentative iterables
+## v1.0.1
+* 8c70c04 1.0.1
 * b3de8f2 calling return if needed
 * 0238c43 Preparing m-fluent
 ## v1.0.0
