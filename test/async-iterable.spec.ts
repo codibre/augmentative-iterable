@@ -5,9 +5,12 @@ import {
   takeWhileAsyncIterable,
   augmentativeForEachAsync,
   addMapAsync,
+  addTakeWhileAsync,
+  addFilterAsync,
 } from '../index';
 import { expect } from 'chai';
 import { ObjectReadableMock } from 'stream-mock';
+import { stub } from 'sinon';
 
 describe('AsyncIterable', () => {
   it('should apply map', async () => {
@@ -143,5 +146,21 @@ describe('AsyncIterable', () => {
 
     expect(map1).to.be.not.eq(original);
     expect(result).to.be.eql([5, 8, 11]);
+  });
+
+  it('should stop to process augments when a stop is signalized', async () => {
+    const original = [1, 2, 3, 4, 3];
+    const call = stub();
+
+    const takeWhile = addTakeWhileAsync(original, (x) => x < 4);
+    const target = addFilterAsync(takeWhile, (x) => {
+      call();
+      return 2 <= x && x <= 3;
+    });
+
+    const result = await augmentativeToArrayAsync.call(target);
+
+    expect(call.callCount).to.be.eq(3);
+    expect(result).to.be.eql([2, 3]);
   });
 });
