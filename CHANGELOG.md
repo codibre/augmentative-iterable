@@ -1,5 +1,9 @@
 
-## 1.1.0
+## 1.1.1
+* cd691cc solving takeWhile bug
+* fa1e13e Merge pull request #4 from Codibre/issue-3-Create_option_to_mutate_iterable_augments
+## v1.1.0
+* 3d2a1d3 1.1.0
 * fc51fa4 creating mutable operations over augmentative iterables
 ## v1.0.1
 * 8c70c04 1.0.1

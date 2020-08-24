@@ -5,8 +5,11 @@ import {
   takeWhileIterable,
   augmentativeForEach,
   addMap,
+  addFilter,
+  addTakeWhile,
 } from '../index';
 import { expect } from 'chai';
+import { stub } from 'sinon';
 
 function* generator<T>(source: Iterable<T>) {
   yield* source;
@@ -124,5 +127,21 @@ describe('Iterable', () => {
 
     expect(map1).to.be.not.eq(original);
     expect(result).to.be.eql([5, 8, 11]);
+  });
+
+  it('should stop to process augments when a stop is signalized', () => {
+    const original = [1, 2, 3, 4, 3];
+    const call = stub();
+
+    const takeWhile = addTakeWhile(original, (x) => x < 4);
+    const target = addFilter(takeWhile, (x) => {
+      call();
+      return 2 <= x && x <= 3;
+    });
+
+    const result = augmentativeToArray.call(target);
+
+    expect(call.callCount).to.be.eq(3);
+    expect(result).to.be.eql([2, 3]);
   });
 });
