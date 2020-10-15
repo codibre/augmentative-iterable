@@ -1,5 +1,9 @@
 
-## 1.1.1
+## 1.1.2
+* 1a8ffc6 fixing takeWhile async
+* 76fa723 Merge pull request #6 from Codibre/issue-5-loop_may_keep_going_if_takeWhile_is_not_the_last_operation
+## v1.1.1
+* 7391a08 1.1.1
 * cd691cc solving takeWhile bug
 * fa1e13e Merge pull request #4 from Codibre/issue-3-Create_option_to_mutate_iterable_augments
 ## v1.1.0
