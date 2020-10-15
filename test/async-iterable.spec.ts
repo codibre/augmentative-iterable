@@ -11,6 +11,7 @@ import {
 import { expect } from 'chai';
 import { ObjectReadableMock } from 'stream-mock';
 import { stub } from 'sinon';
+import 'chai-callslike';
 
 describe('AsyncIterable', () => {
   it('should apply map', async () => {
@@ -162,5 +163,22 @@ describe('AsyncIterable', () => {
 
     expect(call.callCount).to.be.eq(3);
     expect(result).to.be.eql([2, 3]);
+  });
+
+  it('should respect filter and takeWhile through operations', async () => {
+    const callFilter = stub().callsFake((x) => x !== 2);
+    const callTakeWhile = stub().callsFake((x) => x < 4);
+    const callMap = stub().callsFake((x) => x);
+    const original = [1, 2, 3, 4, 5];
+    const filter = addFilterAsync(original, callFilter);
+    const takeWhile = addTakeWhileAsync(filter, callTakeWhile);
+    const map: any = addMapAsync(takeWhile, callMap);
+
+    const result = await augmentativeToArrayAsync.call(map);
+
+    expect(result).to.be.eql([1, 3]);
+    expect(callFilter).to.have.callsLike([1], [2], [3], [4]);
+    expect(callTakeWhile).to.have.callsLike([1], [3], [4]);
+    expect(callMap).to.have.callsLike([1], [3]);
   });
 });
