@@ -7,6 +7,7 @@ import {
   addMap,
   addFilter,
   addTakeWhile,
+  addMapAsync,
 } from '../index';
 import { expect } from 'chai';
 import { stub } from 'sinon';
@@ -143,5 +144,22 @@ describe('Iterable', () => {
 
     expect(call.callCount).to.be.eq(3);
     expect(result).to.be.eql([2, 3]);
+  });
+
+  it('should respect filter and takeWhile through operations', () => {
+    const callFilter = stub().callsFake((x) => x !== 2);
+    const callTakeWhile = stub().callsFake((x) => x < 4);
+    const callMap = stub().callsFake((x) => x);
+    const original = [1, 2, 3, 4, 5];
+    const filter = addFilter(original, callFilter);
+    const takeWhile = addTakeWhile(filter, callTakeWhile);
+    const map: any = addMapAsync(takeWhile, callMap);
+
+    const result = augmentativeToArray.call(map);
+
+    expect(result).to.be.eql([1, 3]);
+    expect(callFilter).to.have.callsLike([1], [2], [3], [4]);
+    expect(callTakeWhile).to.have.callsLike([1], [3], [4]);
+    expect(callMap).to.have.callsLike([1], [3]);
   });
 });
