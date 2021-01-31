@@ -10,15 +10,41 @@ import {
   mutableAsync,
   mutable,
   AnyIterable,
+  immutableAsync,
 } from '../index';
 import { expect } from 'chai';
-import { ObjectReadableMock } from 'stream-mock';
 import { stub } from 'sinon';
 import 'chai-callslike';
 
+async function* getAsync<T>(ts: AnyIterable<T>) {
+  try {
+    for await (const t of ts) {
+      yield t;
+    }
+    console.log('ended');
+  } catch (err) {
+    console.log('errored');
+    throw err;
+  } finally {
+    console.log('runned');
+  }
+}
+
 describe('AsyncIterable', () => {
+  it('should apply map', async () => {
+    const original = getAsync([1, 2, 3]);
+
+    const transformed = mapAsyncIterable(original, (x) => x * 7);
+
+    expect(await augmentativeToArrayAsync.call(transformed)).to.be.eql([
+      7,
+      14,
+      21,
+    ]);
+  });
+
   it('should apply filter', async () => {
-    const original = new ObjectReadableMock([1, 2, 3, 4, 5, 6]);
+    const original = getAsync([1, 2, 3, 4, 5, 6]);
 
     const transformed = filterAsyncIterable(original, (x) => x % 2 === 0);
 
@@ -30,7 +56,7 @@ describe('AsyncIterable', () => {
   });
 
   it('should apply takeWhile', async () => {
-    const original = new ObjectReadableMock([1, 2, 3, 4, 5, 6]);
+    const original = getAsync([1, 2, 3, 4, 5, 6]);
 
     const transformed = takeWhileAsyncIterable(original, (x) => x < 4);
 
@@ -47,7 +73,7 @@ describe('AsyncIterable', () => {
     const transformed = mapAsyncIterable(original, (x) => x * 3);
 
     const resultOriginal = await augmentativeToArrayAsync.call(
-      new ObjectReadableMock(original),
+      getAsync(original),
     );
     const resultTransformed = await augmentativeToArrayAsync.call(transformed);
 
@@ -113,6 +139,20 @@ describe('AsyncIterable', () => {
     expect(result).to.be.eql([5, 8, 11]);
   });
 
+  it('should add an augmentative argument when iterable is already augmentative', async () => {
+    const original = [1, 2, 3];
+    const result: number[] = [];
+
+    const map1 = mapAsyncIterable(original, async (x) => x * 3);
+    const map2 = addMapAsync(map1, (x) => x + 2);
+
+    await augmentativeForEachAsync.call(map1, (async (x: number) =>
+      result.push(x + 2)) as any);
+
+    expect(map1).to.be.eq(map2);
+    expect(result).to.be.eql([7, 10, 13]);
+  });
+
   it('should return an augmentative iterable with adding operation when informed iterable is not augmentative', async () => {
     const original = [1, 2, 3];
     const result: number[] = [];
@@ -161,14 +201,14 @@ describe('AsyncIterable', () => {
 
   describe('mutableAsync', () => {
     it('should return a mutable async iterable', () => {
-      const result = mutableAsync(new ObjectReadableMock([1, 2, 3]));
+      const result = mutableAsync(getAsync([1, 2, 3]));
       const result2 = addFilterAsync(result, (x) => x % 2 === 0);
 
       expect(result).to.be.eq(result2);
     });
 
     it('should return same instance if a mutable async instance is informed', () => {
-      const result = mutableAsync(new ObjectReadableMock([1, 2, 3]));
+      const result = mutableAsync(getAsync([1, 2, 3]));
       const result2 = mutableAsync(result);
 
       expect(result).to.be.eq(result2);
@@ -184,6 +224,22 @@ describe('AsyncIterable', () => {
     it('should return a mutable async iterable from a sync iterable', () => {
       const result = mutableAsync([1, 2, 3]);
       const result2 = addFilterAsync(result, (x) => x % 2 === 0);
+
+      expect(result).to.be.eq(result2);
+    });
+  });
+
+  describe('immutableAsync()', () => {
+    it('should return a immutable async iterable', () => {
+      const result = immutableAsync([1, 2, 3]);
+      const result2 = addFilterAsync(result, (x) => x % 2 === 0);
+
+      expect(result).to.be.not.eq(result2);
+    });
+
+    it('should return same instance if a immutable async instance is informed', () => {
+      const result = immutableAsync([1, 2, 3]);
+      const result2 = immutableAsync(result);
 
       expect(result).to.be.eq(result2);
     });
