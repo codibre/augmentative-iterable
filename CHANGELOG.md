@@ -1,5 +1,11 @@
 
-## 1.1.2
+## 1.1.3
+* 79aa046 updating package
+* 31ce7e2 Merge pull request #10 from Codibre/dependabot/npm_and_yarn/highlight.js-10.4.1
+* 65c6c9d Bump highlight.js from 10.1.1 to 10.4.1
+* d50e177 Merge pull request #8 from Codibre/issue-7-operations_after_takeWhile_resolving_false_still_being_called_for_async_iterable
+## v1.1.2
+* 1e7eaf4 1.1.2
 * 1a8ffc6 fixing takeWhile async
 * 76fa723 Merge pull request #6 from Codibre/issue-5-loop_may_keep_going_if_takeWhile_is_not_the_last_operation
 ## v1.1.1
