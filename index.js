@@ -24,6 +24,7 @@ const {
   addTakeWhile,
 } = require('./lib/augmentative-iterable');
 const {
+  itClone,
   resolver,
   resolverAsync,
 } = require('./lib/augments-utils');
@@ -47,6 +48,7 @@ module.exports = {
   filterAsyncIterable,
   immutable,
   immutableAsync,
+  itClone,
   mapAsyncIterable,
   takeWhileAsyncIterable,
   filterIterable,

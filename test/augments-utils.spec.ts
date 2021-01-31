@@ -1,5 +1,7 @@
 import { resolverAsync, resolver, isPromiseLike } from '../lib/augments-utils';
 import { expect } from 'chai';
+import { augmentativeToArrayAsync, itClone, mutable, mutableAsync } from '..';
+import { getAsync } from './get-async';
 
 describe('augments-utils', () => {
   describe('resolverAsync()', () => {
@@ -42,6 +44,56 @@ describe('augments-utils', () => {
       });
 
       expect(result).to.be.false;
+    });
+  });
+
+  describe('itClone()', () => {
+    it('should return a new augmentative iterable with the same properties of the old one', () => {
+      const iterable = mutable([1, 2, 3]);
+      const iterable2 = itClone(iterable);
+
+      expect(iterable).to.be.not.eq(iterable2);
+      expect(iterable).to.be.eql(iterable2);
+    });
+
+    it('should clone a vanilla iterable without breaking it', () => {
+      const iterable = [1, 2, 3];
+      const iterable2 = itClone(iterable);
+
+      expect(iterable).to.be.not.eq(iterable2);
+      expect(Array.from(iterable)).to.be.eql([1, 2, 3]);
+    });
+
+    it('should clone a vanilla async iterable without breaking it', async () => {
+      const iterable = getAsync([1, 2, 3]);
+      const iterable2 = itClone(iterable);
+
+      expect(iterable).to.be.not.eq(iterable2);
+      expect(await augmentativeToArrayAsync.call(iterable)).to.be.eql([
+        1,
+        2,
+        3,
+      ]);
+    });
+
+    it('should return a new augmentative async iterable with the same properties of the old one', () => {
+      const iterable = mutableAsync([1, 2, 3]);
+      const iterable2 = itClone(iterable);
+
+      expect(iterable).to.be.not.eq(iterable2);
+      expect(iterable).to.be.eql(iterable2);
+    });
+
+    it('should throw an error when the informed parameter is not an iterable not an async iterable', () => {
+      let thrownError: any;
+
+      try {
+        itClone({} as any);
+      } catch (err) {
+        thrownError = err;
+      }
+
+      expect(thrownError).to.be.instanceOf(Error);
     });
   });
 });

@@ -9,26 +9,12 @@ import {
   addFilterAsync,
   mutableAsync,
   mutable,
-  AnyIterable,
   immutableAsync,
 } from '../index';
 import { expect } from 'chai';
 import { stub } from 'sinon';
 import 'chai-callslike';
-
-async function* getAsync<T>(ts: AnyIterable<T>) {
-  try {
-    for await (const t of ts) {
-      yield t;
-    }
-    console.log('ended');
-  } catch (err) {
-    console.log('errored');
-    throw err;
-  } finally {
-    console.log('runned');
-  }
-}
+import { getAsync } from './get-async';
 
 describe('AsyncIterable', () => {
   it('should apply map', async () => {
@@ -139,19 +125,19 @@ describe('AsyncIterable', () => {
     expect(result).to.be.eql([5, 8, 11]);
   });
 
-  // it('should add an augmentative argument when iterable is already augmentative', async () => {
-  //   const original = [1, 2, 3];
-  //   const result: number[] = [];
+  it('should add an augmentative argument when iterable is already augmentative', async () => {
+    const original = [1, 2, 3];
+    const result: number[] = [];
 
-  //   const map1 = mapAsyncIterable(original, async (x) => x * 3);
-  //   const map2 = addMapAsync(map1, (x) => x + 2);
+    const map1 = mapAsyncIterable(original, async (x) => x * 3);
+    const map2 = addMapAsync(map1, (x) => x + 2);
 
-  //   await augmentativeForEachAsync.call(map1, (async (x: number) =>
-  //     result.push(x + 2)) as any);
+    await augmentativeForEachAsync.call(map1, (async (x: number) =>
+      result.push(x + 2)) as any);
 
-  //   expect(map1).to.be.eq(map2);
-  //   expect(result).to.be.eql([7, 10, 13]);
-  // });
+    expect(map1).to.be.eq(map2);
+    expect(result).to.be.eql([7, 10, 13]);
+  });
 
   it('should return an augmentative iterable with adding operation when informed iterable is not augmentative', async () => {
     const original = [1, 2, 3];

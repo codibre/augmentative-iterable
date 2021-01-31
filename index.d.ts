@@ -233,3 +233,5 @@ export declare function immutable<T>(iterable: Iterable<T>): Iterable<T>;
 export declare function immutableAsync<T>(
   iterable: AnyIterable<T>,
 ): AsyncIterable<T>;
+
+export declare function itClone<T extends AnyIterable<any>>(it: T): T;

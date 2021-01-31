@@ -107,19 +107,19 @@ describe('Iterable', () => {
     expect(result).to.be.eql([5, 8, 11]);
   });
 
-  // it('should add an augmentative argument when iterable is already augmentative', async () => {
-  //   const original = [1, 2, 3];
-  //   const result: number[] = [];
+  it('should add an augmentative argument when iterable is already augmentative', async () => {
+    const original = [1, 2, 3];
+    const result: number[] = [];
 
-  //   const map1 = mapIterable(original, (x) => x * 3);
-  //   const map2 = addMap(map1, (x) => x + 2);
+    const map1 = mapIterable(original, (x) => x * 3);
+    const map2 = addMap(map1, (x) => x + 2);
 
-  //   await augmentativeForEach.call(map1, ((x: number) =>
-  //     result.push(x + 2)) as any);
+    await augmentativeForEach.call(map1, ((x: number) =>
+      result.push(x + 2)) as any);
 
-  //   expect(map1).to.be.eq(map2);
-  //   expect(result).to.be.eql([7, 10, 13]);
-  // });
+    expect(map1).to.be.eq(map2);
+    expect(result).to.be.eql([7, 10, 13]);
+  });
 
   it('should return an augmentative iterable with adding operation when informed iterable is not augmentative', async () => {
     const original = [1, 2, 3];
