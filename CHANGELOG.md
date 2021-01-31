@@ -1,5 +1,9 @@
 
-## 1.1.4
+## 1.1.5
+* 4ca091a fixing cagada
+* b4b7cb7 fixing cagada
+## v1.1.4
+* 9a02f9f 1.1.4
 * 97b13e7 updating tests, keeping mutable augmentative iterable as default
 * 0c667c9 fixing return and mutable iterables
 * c28f5ed fixing lint
