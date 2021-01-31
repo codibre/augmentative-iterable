@@ -90,8 +90,8 @@ export declare function augmentativeToArray<T>(this: Iterable<T>): T[];
  * @param this: The original async iterable you need to bind
  */
 export declare function augmentativeToArrayAsync<T>(
-  this: AsyncIterable<T>,
-): T[];
+  this: AnyIterable<T>,
+): Promise<T[]>;
 /**
  * Returns an iterable that returns only the values of the original iterable that passes the informed predicate
  * @param it the original iterable
@@ -227,5 +227,5 @@ export declare function resolverAsync<T, R>(
 
 export declare function mutable<T>(iterable: Iterable<T>): Iterable<T>;
 export declare function mutableAsync<T>(
-  iterable: AsyncIterable<T>,
+  iterable: AnyIterable<T>,
 ): AsyncIterable<T>;

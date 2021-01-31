@@ -8,9 +8,12 @@ import {
   addFilter,
   addTakeWhile,
   addMapAsync,
+  mutable,
+  mutableAsync,
 } from '../index';
 import { expect } from 'chai';
 import { stub } from 'sinon';
+import 'chai-callslike';
 
 function* generator<T>(source: Iterable<T>) {
   yield* source;
@@ -103,20 +106,6 @@ describe('Iterable', () => {
     expect(result).to.be.eql([5, 8, 11]);
   });
 
-  it('should add an augmentative argument when iterable is already augmentative', async () => {
-    const original = [1, 2, 3];
-    const result: number[] = [];
-
-    const map1 = mapIterable(original, (x) => x * 3);
-    const map2 = addMap(map1, (x) => x + 2);
-
-    await augmentativeForEach.call(map1, ((x: number) =>
-      result.push(x + 2)) as any);
-
-    expect(map1).to.be.eq(map2);
-    expect(result).to.be.eql([7, 10, 13]);
-  });
-
   it('should return an augmentative iterable with adding operation when informed iterable is not augmentative', async () => {
     const original = [1, 2, 3];
     const result: number[] = [];
@@ -161,5 +150,21 @@ describe('Iterable', () => {
     expect(callFilter).to.have.callsLike([1], [2], [3], [4]);
     expect(callTakeWhile).to.have.callsLike([1], [3], [4]);
     expect(callMap).to.have.callsLike([1], [3]);
+  });
+
+  describe('mutable', () => {
+    it('should return a mutable iterable', () => {
+      const result = mutable([1, 2, 3]);
+      const result2 = addFilter(result, (x) => x % 2 === 0);
+
+      expect(result).to.be.eq(result2);
+    });
+
+    it('should return same instance if a mutable sync instance is informed', () => {
+      const result = mutable([1, 2, 3]);
+      const result2 = mutable(result);
+
+      expect(result).to.be.eq(result2);
+    });
   });
 });
