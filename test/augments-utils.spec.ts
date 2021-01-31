@@ -10,9 +10,10 @@ describe('augments-utils', () => {
     });
 
     it('should resolve synchronously a sync value', async () => {
-      const result = resolverAsync(Promise.resolve(1), (x) => x * 2) as Promise<
-        number
-      >;
+      const result = resolverAsync(
+        Promise.resolve(1),
+        (x) => x * 2,
+      ) as Promise<number>;
 
       expect(result).to.be.instanceOf(Promise);
       expect(await result).to.be.eq(2);
