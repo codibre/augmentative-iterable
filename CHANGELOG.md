@@ -1,5 +1,8 @@
 
-## 1.1.6
+## 1.1.7
+* 7640ee5 adding throw to sync iterator
+## v1.1.6
+* 59a8939 1.1.6
 * 81b0b8b creating itClone for advanced mutable treatment
 ## v1.1.5
 * 4fd1f31 1.1.5
