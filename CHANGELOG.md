@@ -1,5 +1,8 @@
 
-## 1.1.5
+## 1.1.6
+* 81b0b8b creating itClone for advanced mutable treatment
+## v1.1.5
+* 4fd1f31 1.1.5
 * 4ca091a fixing cagada
 * b4b7cb7 fixing cagada
 ## v1.1.4
