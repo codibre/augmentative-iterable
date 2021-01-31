@@ -1,5 +1,10 @@
 
-## 1.1.3
+## 1.1.4
+* 97b13e7 updating tests, keeping mutable augmentative iterable as default
+* 0c667c9 fixing return and mutable iterables
+* c28f5ed fixing lint
+## v1.1.3
+* 2ac83f5 1.1.3
 * 79aa046 updating package
 * 31ce7e2 Merge pull request #10 from Codibre/dependabot/npm_and_yarn/highlight.js-10.4.1
 * 65c6c9d Bump highlight.js from 10.1.1 to 10.4.1
