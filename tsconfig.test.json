@@ -2,12 +2,10 @@
   "extends": "@codibre/confs/tsconfig.test.json",
   "compilerOptions": {
     "allowJs": true,
-    "outDir": "./dist",
     "types": [
-      "reflect-metadata",
       "node",
       "mocha",
     ]
   },
-  "include": ["./lib", "./test"]
+  "include": ["./lib", "./test", "index.js"]
 }
