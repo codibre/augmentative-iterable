@@ -7,9 +7,9 @@
     "type": "node",
     "request": "launch",
     "name": "Mocha Tests",
-    "skipFiles": ["<node_internals>/**"],
     "cwd": "${workspaceRoot}",
     "args": [
+      "--experimental-worker",
       "${workspaceRoot}/node_modules/mocha/bin/_mocha",
       "--timeout",
       "999999"
