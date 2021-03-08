@@ -1,5 +1,10 @@
 
-## 1.1.7
+## 1.1.8
+* 27ae49e rolling back typescript version
+* aea94a2 fixing vulnerabilities
+* a64b976 bettering performance
+## v1.1.7
+* 38789ea 1.1.7
 * 7640ee5 adding throw to sync iterator
 ## v1.1.6
 * 59a8939 1.1.6
