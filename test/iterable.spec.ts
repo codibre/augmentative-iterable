@@ -9,7 +9,6 @@ import {
   addTakeWhile,
   addMapAsync,
   mutable,
-  mutableAsync,
   immutable,
 } from '../index';
 import { expect } from 'chai';

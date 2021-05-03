@@ -1,6 +1,7 @@
 {
   "extends": "@codibre/confs/tsconfig.test.json",
   "compilerOptions": {
+    "rootDir": ".",
     "allowJs": true,
     "types": [
       "node",

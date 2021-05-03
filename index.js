@@ -28,11 +28,6 @@ const {
   resolver,
   resolverAsync,
 } = require('./lib/augments-utils');
-const {
-  YIELD,
-  IGNORE,
-  STOP,
-} = require('./lib/augments-types');
 
 module.exports = {
   addFilter,
