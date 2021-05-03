@@ -1,5 +1,8 @@
 
-## 1.1.8
+## 1.1.9
+* 6ac34d9 fixing vulnerabilities
+## v1.1.8
+* fe7ecfa 1.1.8
 * 27ae49e rolling back typescript version
 * aea94a2 fixing vulnerabilities
 * a64b976 bettering performance
