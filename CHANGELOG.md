@@ -1,5 +1,8 @@
 
-## 1.1.9
+## 1.1.10
+* 1ffb3ca improving async foreach performance
+## v1.1.9
+* c5f4c1f 1.1.9
 * 6ac34d9 fixing vulnerabilities
 ## v1.1.8
 * fe7ecfa 1.1.8
