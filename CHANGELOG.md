@@ -1,5 +1,7 @@
 
-## 1.1.10
+## 1.1.11
+* ba3ee82 fixing vulnerabilities
+* 1d1198a 1.1.10
 * 1ffb3ca improving async foreach performance
 ## v1.1.9
 * c5f4c1f 1.1.9
@@ -31,6 +33,31 @@
 * 65c6c9d Bump highlight.js from 10.1.1 to 10.4.1
 * d50e177 Merge pull request #8 from Codibre/issue-7-operations_after_takeWhile_resolving_false_still_being_called_for_async_iterable
 ## v1.1.2
+## v1.1.10
+* 1d1198a 1.1.10
+* 1ffb3ca improving async foreach performance
+* c5f4c1f 1.1.9
+* 6ac34d9 fixing vulnerabilities
+* fe7ecfa 1.1.8
+* 27ae49e rolling back typescript version
+* aea94a2 fixing vulnerabilities
+* a64b976 bettering performance
+* 38789ea 1.1.7
+* 7640ee5 adding throw to sync iterator
+* 59a8939 1.1.6
+* 81b0b8b creating itClone for advanced mutable treatment
+* 4fd1f31 1.1.5
+* 4ca091a fixing cagada
+* b4b7cb7 fixing cagada
+* 9a02f9f 1.1.4
+* 97b13e7 updating tests, keeping mutable augmentative iterable as default
+* 0c667c9 fixing return and mutable iterables
+* c28f5ed fixing lint
+* 2ac83f5 1.1.3
+* 79aa046 updating package
+* 31ce7e2 Merge pull request #10 from Codibre/dependabot/npm_and_yarn/highlight.js-10.4.1
+* 65c6c9d Bump highlight.js from 10.1.1 to 10.4.1
+* d50e177 Merge pull request #8 from Codibre/issue-7-operations_after_takeWhile_resolving_false_still_being_called_for_async_iterable
 * 1e7eaf4 1.1.2
 * 1a8ffc6 fixing takeWhile async
 * 76fa723 Merge pull request #6 from Codibre/issue-5-loop_may_keep_going_if_takeWhile_is_not_the_last_operation
