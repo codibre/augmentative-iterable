@@ -1,5 +1,8 @@
 
-## 1.2.1
+## 1.3.0
+* 076d199 fix: fixing flatMap  over a previous augmented iterable
+## v1.2.1
+* 2e49093 1.2.1
 * 74acfbb feat: Implementing flatMapIterator for sync iterables
 ## v1.2.0
 * cda5e4f 1.2.0
