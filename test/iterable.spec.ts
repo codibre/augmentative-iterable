@@ -8,6 +8,7 @@ import {
   addFilter,
   addTakeWhile,
   addMapAsync,
+  flatMapIterable,
 } from '../index';
 import { expect } from 'chai';
 import { stub } from 'sinon';
@@ -41,6 +42,17 @@ describe('Iterable', () => {
 
     expect(Array.from(transformed)).to.be.eql([1, 2, 3]);
   });
+  it('should apply flatMap', () => {
+    const original = [
+      [1, 2, 3],
+      [4, 5, 6],
+      [7, 8, 9],
+    ];
+
+    const transformed = flatMapIterable(original, (x) => x);
+
+    expect(Array.from(transformed)).to.be.eql([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  });
 
   it('should be augmented without modifying the original iterable', () => {
     const original = [1, 2, 3];
@@ -70,6 +82,20 @@ describe('Iterable', () => {
     const map3 = mapIterable(map2, (x) => x.toString());
 
     expect(Array.from(map3)).to.be.eql(['5', '8', '11']);
+  });
+
+  it('should accumulate augmentative arguments with flatMap', () => {
+    const original = [
+      [1, 2, 3],
+      [4, 5, 6],
+      [7, 8, 9],
+    ];
+
+    const flattened = flatMapIterable(original, (x) => x);
+    const filtered = filterIterable(flattened, (x) => x % 3);
+    const mapped = mapIterable(filtered, (x) => x * 2);
+
+    expect(Array.from(mapped)).to.be.eql([2, 4, 8, 10, 14, 16]);
   });
 
   it('should accumulate different augmentative arguments', () => {

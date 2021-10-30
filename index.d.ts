@@ -195,6 +195,15 @@ export declare function addTakeWhile<T>(
   predicate: Predicate<T>,
 ): Iterable<T>;
 /**
+ * Add a flatMap augment for the iterable. It will returns a new iterable with tne new mapped item type.
+ * @param it the original iterable
+ * @param mapper the mapping function
+ */
+export declare function flatMapIterable<T, R>(
+  it: Iterable<T>,
+  mapper: Mapper<T, Iterable<R>>,
+): Iterable<R>;
+/**
  * Add a takeWhile augment for the async iterable. It will returns a new iterable if the informed is not already augmentative.
  * @param it the original iterable or async iterable
  * @param predicate the stop condition
