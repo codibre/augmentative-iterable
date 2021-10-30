@@ -42,6 +42,7 @@ describe('Iterable', () => {
 
     expect(Array.from(transformed)).to.be.eql([1, 2, 3]);
   });
+
   it('should apply flatMap', () => {
     const original = [
       [1, 2, 3],
@@ -49,7 +50,7 @@ describe('Iterable', () => {
       [7, 8, 9],
     ];
 
-    const transformed = flatMapIterable(original, (x) => x);
+    const transformed = flatMapIterable(original);
 
     expect(Array.from(transformed)).to.be.eql([1, 2, 3, 4, 5, 6, 7, 8, 9]);
   });
@@ -91,7 +92,7 @@ describe('Iterable', () => {
       [7, 8, 9],
     ];
 
-    const flattened = flatMapIterable(original, (x) => x);
+    const flattened = flatMapIterable(original);
     const filtered = filterIterable(flattened, (x) => x % 3);
     const mapped = mapIterable(filtered, (x) => x * 2);
 

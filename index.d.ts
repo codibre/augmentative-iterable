@@ -121,6 +121,15 @@ export declare function mapIterable<T, R>(
 ): Iterable<T>;
 
 /**
+ * Add a flatMap augment for the iterable. It will returns a new iterable with tne new mapped item type.
+ * @param it the original iterable
+ * @param mapper the mapping function
+ */
+export declare function flatMapIterable<T>(
+  it: Iterable<T>,
+): Iterable<T extends Iterable<infer R> ? R : never>;
+
+/**
  * Returns an async iterable that maps each value of the async iterable using the function provided
  * @param it the original async iterable or iterable
  * @param mapper the mapping function
@@ -194,15 +203,6 @@ export declare function addTakeWhile<T>(
   it: Iterable<T>,
   predicate: Predicate<T>,
 ): Iterable<T>;
-/**
- * Add a flatMap augment for the iterable. It will returns a new iterable with tne new mapped item type.
- * @param it the original iterable
- * @param mapper the mapping function
- */
-export declare function flatMapIterable<T, R>(
-  it: Iterable<T>,
-  mapper: Mapper<T, Iterable<R>>,
-): Iterable<R>;
 /**
  * Add a takeWhile augment for the async iterable. It will returns a new iterable if the informed is not already augmentative.
  * @param it the original iterable or async iterable
