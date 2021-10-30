@@ -1,6 +1,6 @@
 import { resolverAsync, resolver, isPromiseLike } from '../lib/augments-utils';
 import { expect } from 'chai';
-import { augmentativeToArrayAsync, itClone, mutable, mutableAsync } from '..';
+import { augmentativeToArrayAsync, itClone } from '../index';
 import { getAsync } from './get-async';
 
 describe('augments-utils', () => {
@@ -48,14 +48,6 @@ describe('augments-utils', () => {
   });
 
   describe('itClone()', () => {
-    it('should return a new augmentative iterable with the same properties of the old one', () => {
-      const iterable = mutable([1, 2, 3]);
-      const iterable2 = itClone(iterable);
-
-      expect(iterable).to.be.not.eq(iterable2);
-      expect(iterable).to.be.eql(iterable2);
-    });
-
     it('should clone a vanilla iterable without breaking it', () => {
       const iterable = [1, 2, 3];
       const iterable2 = itClone(iterable);
@@ -74,14 +66,6 @@ describe('augments-utils', () => {
         2,
         3,
       ]);
-    });
-
-    it('should return a new augmentative async iterable with the same properties of the old one', () => {
-      const iterable = mutableAsync([1, 2, 3]);
-      const iterable2 = itClone(iterable);
-
-      expect(iterable).to.be.not.eq(iterable2);
-      expect(iterable).to.be.eql(iterable2);
     });
 
     it('should throw an error when the informed parameter is not an iterable not an async iterable', () => {

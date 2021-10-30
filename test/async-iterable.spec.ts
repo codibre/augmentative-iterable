@@ -7,9 +7,6 @@ import {
   addMapAsync,
   addTakeWhileAsync,
   addFilterAsync,
-  mutableAsync,
-  mutable,
-  immutableAsync,
 } from '../index';
 import { expect } from 'chai';
 import { stub } from 'sinon';
@@ -183,51 +180,5 @@ describe('AsyncIterable', () => {
     expect(callFilter).to.have.callsLike([1], [2], [3], [4]);
     expect(callTakeWhile).to.have.callsLike([1], [3], [4]);
     expect(callMap).to.have.callsLike([1], [3]);
-  });
-
-  describe('mutableAsync', () => {
-    it('should return a mutable async iterable', () => {
-      const result = mutableAsync(getAsync([1, 2, 3]));
-      const result2 = addFilterAsync(result, (x) => x % 2 === 0);
-
-      expect(result).to.be.eq(result2);
-    });
-
-    it('should return same instance if a mutable async instance is informed', () => {
-      const result = mutableAsync(getAsync([1, 2, 3]));
-      const result2 = mutableAsync(result);
-
-      expect(result).to.be.eq(result2);
-    });
-
-    it('should return a different instance if a mutable sync instance is informed', () => {
-      const result = mutable([1, 2, 3]);
-      const result2 = mutableAsync(result);
-
-      expect(result).to.be.not.eq(result2);
-    });
-
-    it('should return a mutable async iterable from a sync iterable', () => {
-      const result = mutableAsync([1, 2, 3]);
-      const result2 = addFilterAsync(result, (x) => x % 2 === 0);
-
-      expect(result).to.be.eq(result2);
-    });
-  });
-
-  describe('immutableAsync()', () => {
-    it('should return a immutable async iterable', () => {
-      const result = immutableAsync([1, 2, 3]);
-      const result2 = addFilterAsync(result, (x) => x % 2 === 0);
-
-      expect(result).to.be.not.eq(result2);
-    });
-
-    it('should return same instance if a immutable async instance is informed', () => {
-      const result = immutableAsync([1, 2, 3]);
-      const result2 = immutableAsync(result);
-
-      expect(result).to.be.eq(result2);
-    });
   });
 });

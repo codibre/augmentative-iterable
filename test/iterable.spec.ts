@@ -8,8 +8,6 @@ import {
   addFilter,
   addTakeWhile,
   addMapAsync,
-  mutable,
-  immutable,
 } from '../index';
 import { expect } from 'chai';
 import { stub } from 'sinon';
@@ -164,37 +162,5 @@ describe('Iterable', () => {
     expect(callFilter).to.have.callsLike([1], [2], [3], [4]);
     expect(callTakeWhile).to.have.callsLike([1], [3], [4]);
     expect(callMap).to.have.callsLike([1], [3]);
-  });
-
-  describe('mutable()', () => {
-    it('should return a mutable iterable', () => {
-      const result = mutable([1, 2, 3]);
-      const result2 = addFilter(result, (x) => x % 2 === 0);
-
-      expect(result).to.be.eq(result2);
-    });
-
-    it('should return same instance if a mutable sync instance is informed', () => {
-      const result = mutable([1, 2, 3]);
-      const result2 = mutable(result);
-
-      expect(result).to.be.eq(result2);
-    });
-  });
-
-  describe('immutable()', () => {
-    it('should return a immutable iterable', () => {
-      const result = immutable([1, 2, 3]);
-      const result2 = addFilter(result, (x) => x % 2 === 0);
-
-      expect(result).to.be.not.eq(result2);
-    });
-
-    it('should return same instance if a immutable sync instance is informed', () => {
-      const result = immutable([1, 2, 3]);
-      const result2 = immutable(result);
-
-      expect(result).to.be.eq(result2);
-    });
   });
 });
