@@ -1,5 +1,7 @@
 
-## 1.1.11
+## 1.2.0
+* 5824148 feat: removing mutable and immutable functions, improving performance through linked list
+* 6a58603 1.1.11
 * ba3ee82 fixing vulnerabilities
 * 1d1198a 1.1.10
 * 1ffb3ca improving async foreach performance
@@ -33,6 +35,9 @@
 * 65c6c9d Bump highlight.js from 10.1.1 to 10.4.1
 * d50e177 Merge pull request #8 from Codibre/issue-7-operations_after_takeWhile_resolving_false_still_being_called_for_async_iterable
 ## v1.1.2
+## v1.1.11
+* 6a58603 1.1.11
+* ba3ee82 fixing vulnerabilities
 ## v1.1.10
 * 1d1198a 1.1.10
 * 1ffb3ca improving async foreach performance
