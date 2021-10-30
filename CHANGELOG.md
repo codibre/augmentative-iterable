@@ -1,5 +1,8 @@
 
-## 1.2.0
+## 1.2.1
+* 74acfbb feat: Implementing flatMapIterator for sync iterables
+## v1.2.0
+* cda5e4f 1.2.0
 * 5824148 feat: removing mutable and immutable functions, improving performance through linked list
 * 6a58603 1.1.11
 * ba3ee82 fixing vulnerabilities
