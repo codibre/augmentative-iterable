@@ -99,6 +99,21 @@ describe('Iterable', () => {
     expect(Array.from(mapped)).to.be.eql([2, 4, 8, 10, 14, 16]);
   });
 
+  it('should augment flatMap over an already augmented iterable', () => {
+    const original = [0, 1, 2];
+
+    const expanded = mapIterable(original, (x) => [
+      1 + 3 * x,
+      2 + 3 * x,
+      3 + 3 * x,
+    ]);
+    const flattened = flatMapIterable(expanded);
+    const filtered = filterIterable(flattened, (x) => x % 3);
+    const mapped = mapIterable(filtered, (x) => x * 2);
+
+    expect(Array.from(mapped)).to.be.eql([2, 4, 8, 10, 14, 16]);
+  });
+
   it('should accumulate different augmentative arguments', () => {
     const original = [1, 2, 3, 4, 5, 6];
 
