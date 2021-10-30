@@ -1,5 +1,8 @@
 
-## 1.3.0
+## 1.3.1
+* ab2da53 fix: fixing flat map over an already augmented iterable
+## v1.3.0
+* a595ddd 1.3.0
 * 076d199 fix: fixing flatMap  over a previous augmented iterable
 ## v1.2.1
 * 2e49093 1.2.1
