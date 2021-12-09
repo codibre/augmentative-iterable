@@ -43,12 +43,24 @@ describe('Iterable', () => {
     expect(Array.from(transformed)).to.be.eql([1, 2, 3]);
   });
 
-  it('should apply flatMap', () => {
+  it('should apply flatMap over array', () => {
     const original = [
       [1, 2, 3],
       [4, 5, 6],
       [7, 8, 9],
     ];
+
+    const transformed = flatMapIterable(original);
+
+    expect(Array.from(transformed)).to.be.eql([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  });
+
+  it('should apply flatMap', () => {
+    const original = [
+      [1, 2, 3],
+      [4, 5, 6],
+      [7, 8, 9],
+    ][Symbol.iterator]();
 
     const transformed = flatMapIterable(original);
 
@@ -85,12 +97,27 @@ describe('Iterable', () => {
     expect(Array.from(map3)).to.be.eql(['5', '8', '11']);
   });
 
+  it('should augment flatMap over an already augmented iterable over array', () => {
+    const original = [0, 1, 2];
+
+    const expanded = mapIterable(original, (x) => [
+      1 + 3 * x,
+      2 + 3 * x,
+      3 + 3 * x,
+    ]);
+    const flattened = flatMapIterable(expanded);
+    const filtered = filterIterable(flattened, (x) => x % 3);
+    const mapped = mapIterable(filtered, (x) => x * 2);
+
+    expect(Array.from(mapped)).to.be.eql([2, 4, 8, 10, 14, 16]);
+  });
+
   it('should accumulate augmentative arguments with flatMap', () => {
     const original = [
       [1, 2, 3],
       [4, 5, 6],
       [7, 8, 9],
-    ];
+    ][Symbol.iterator]();
 
     const flattened = flatMapIterable(original);
     const filtered = filterIterable(flattened, (x) => x % 3);
@@ -99,8 +126,23 @@ describe('Iterable', () => {
     expect(Array.from(mapped)).to.be.eql([2, 4, 8, 10, 14, 16]);
   });
 
-  it('should augment flatMap over an already augmented iterable', () => {
+  it('should augment flatMap over an already augmented iterable over array', () => {
     const original = [0, 1, 2];
+
+    const expanded = mapIterable(original, (x) => [
+      1 + 3 * x,
+      2 + 3 * x,
+      3 + 3 * x,
+    ]);
+    const flattened = flatMapIterable(expanded);
+    const filtered = filterIterable(flattened, (x) => x % 3);
+    const mapped = mapIterable(filtered, (x) => x * 2);
+
+    expect(Array.from(mapped)).to.be.eql([2, 4, 8, 10, 14, 16]);
+  });
+
+  it('should augment flatMap over an already augmented iterable', () => {
+    const original = [0, 1, 2][Symbol.iterator]();
 
     const expanded = mapIterable(original, (x) => [
       1 + 3 * x,
