@@ -139,6 +139,25 @@ export declare function mapAsyncIterable<T, R>(
   mapper: AsyncMapper<T, R>,
 ): AsyncIterable<T>;
 /**
+ * Skips the first offset elements and then yields the next ones
+ * @param it the original iterable
+ * @param offset the number of offset elements
+ */
+ export declare function skipIterable<T>(
+  it: Iterable<T>,
+  offset: number,
+): Iterable<T>;
+
+/**
+ * Skips the first offset elements and then yields the next ones
+ * @param it the original async iterable
+ * @param offset the number of offset elements
+ */
+export declare function skipAsyncIterable<T>(
+  it: AnyIterable<T>,
+  offset: number,
+): AsyncIterable<T>;
+/**
  * Returns an iterable that stop to iterate over the values of the original iterable when the informed condition resolves to true.
  * @param it the original iterable
  * @param predicate the stop condition

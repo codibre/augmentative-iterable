@@ -9,6 +9,7 @@ import {
   addTakeWhile,
   addMapAsync,
   flatMapIterable,
+  skipIterable,
 } from '../index';
 import { expect } from 'chai';
 import { stub } from 'sinon';
@@ -246,5 +247,49 @@ describe('Iterable', () => {
     expect(callFilter).to.have.callsLike([1], [2], [3], [4]);
     expect(callTakeWhile).to.have.callsLike([1], [3], [4]);
     expect(callMap).to.have.callsLike([1], [3]);
+  });
+
+  it('should work with skip operation over an array', () => {
+    const original = [1, 2, 3, 4, 5, 6];
+
+    const skipped = skipIterable(original, 2);
+    const filtered = filterIterable(skipped, (x) => x % 2 === 0);
+
+    const result = augmentativeToArray.call(filtered);
+
+    expect(result).to.be.eql([4, 6]);
+  });
+
+  it('should work with skip operation over an array with negative skip', () => {
+    const original = [2, 3, 4, 5, 6];
+
+    const skipped = skipIterable(original, -2);
+    const filtered = filterIterable(skipped, (x) => x % 2 === 0);
+
+    const result = augmentativeToArray.call(filtered);
+
+    expect(result).to.be.eql([2, 4, 6]);
+  });
+
+  it('should work with skip operation over an iterable', () => {
+    const original = [1, 2, 3, 4, 5, 6][Symbol.iterator]();
+
+    const skipped = skipIterable(original, 2);
+    const filtered = filterIterable(skipped, (x) => x % 2 === 0);
+
+    const result = augmentativeToArray.call(filtered);
+
+    expect(result).to.be.eql([4, 6]);
+  });
+
+  it('should work with skip operation over an augmentative iterable', () => {
+    const original = [1, 2, 3, 4, 5, 6];
+
+    const filtered = filterIterable(original, (x) => x % 2 === 0);
+    const skipped = skipIterable(filtered, 2);
+
+    const result = augmentativeToArray.call(skipped);
+
+    expect(result).to.be.eql([6]);
   });
 });
