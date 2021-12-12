@@ -1,5 +1,12 @@
 
-## 1.3.1
+## 1.4.0
+* 61da7a8 Merge pull request #15 from Codibre/fix/simplying-code
+* e15a064 refactor: isolating some symbols
+* cacab4e feat: creating flatAsync operation
+* 5d3b44c feat: creating skip operation
+* 39e0cd0 fix: simplying code. Reapeating some code to make it more maitainable
+## v1.3.1
+* e274efe 1.3.1
 * ab2da53 fix: fixing flat map over an already augmented iterable
 ## v1.3.0
 * a595ddd 1.3.0
