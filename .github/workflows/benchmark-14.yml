@@ -2,6 +2,10 @@
 
 name: benchmark-14
 on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
   workflow_dispatch:
     branches: [master]
 
