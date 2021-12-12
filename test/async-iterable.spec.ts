@@ -270,4 +270,30 @@ describe('AsyncIterable', () => {
 
     expect(result).to.be.eql([1, 2, 3, 4, 5, 6, 7, 8, 9]);
   });
+
+  it('should apply flatMap over a sync iterable of async iterables', async () => {
+    const original = [
+      toAsync([1, 2, 3]),
+      toAsync([4, 5, 6]),
+      toAsync([7, 8, 9]),
+    ][Symbol.iterator]();
+
+    const transformed = flatMapAsyncIterable(original);
+    const result = await augmentativeToArrayAsync.call(transformed);
+
+    expect(result).to.be.eql([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  });
+
+  it('should apply flatMap over an async iterable of sync iterables', async () => {
+    const original = toAsync([
+      [1, 2, 3][Symbol.iterator](),
+      [4, 5, 6][Symbol.iterator](),
+      [7, 8, 9][Symbol.iterator](),
+    ]);
+
+    const transformed = flatMapAsyncIterable(original);
+    const result = await augmentativeToArrayAsync.call(transformed);
+
+    expect(result).to.be.eql([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  });
 });
