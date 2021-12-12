@@ -1,5 +1,11 @@
 
-## 1.4.0
+## 1.5.0
+* 9f8eb9f Merge pull request #16 from Codibre/sync-async-iterable
+* e6554d0 chore: making benchmark run on push
+* ec388b5 chore: excluding test-benchmark from coverage
+* 1fe1c51 feat: making async iterable to be runned synchronously everytime possible
+## v1.4.0
+* 21b0e0f 1.4.0
 * 61da7a8 Merge pull request #15 from Codibre/fix/simplying-code
 * e15a064 refactor: isolating some symbols
 * cacab4e feat: creating flatAsync operation
