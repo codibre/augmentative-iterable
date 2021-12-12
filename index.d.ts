@@ -121,6 +121,16 @@ export declare function mapIterable<T, R>(
 ): Iterable<T>;
 
 /**
+ * Returns an async iterable that maps each value of the async iterable using the function provided
+ * @param it the original async iterable or iterable
+ * @param mapper the mapping function
+ */
+export declare function mapAsyncIterable<T, R>(
+  it: AnyIterable<T>,
+  mapper: AsyncMapper<T, R>,
+): AsyncIterable<T>;
+
+/**
  * Add a flatMap augment for the iterable. It will returns a new iterable with tne new mapped item type.
  * @param it the original iterable
  * @param mapper the mapping function
@@ -130,13 +140,31 @@ export declare function flatMapIterable<T>(
 ): Iterable<T extends Iterable<infer R> ? R : never>;
 
 /**
- * Returns an async iterable that maps each value of the async iterable using the function provided
- * @param it the original async iterable or iterable
+ * Add a flatMap augment for the iterable. It will returns a new iterable with tne new mapped item type.
+ * @param it the original iterable
  * @param mapper the mapping function
  */
-export declare function mapAsyncIterable<T, R>(
+export declare function flatMapAsyncIterable<T>(
   it: AnyIterable<T>,
-  mapper: AsyncMapper<T, R>,
+): AsyncIterable<T extends AsyncIterable<infer R> ? R : never>;
+/**
+ * Skips the first offset elements and then yields the next ones
+ * @param it the original iterable
+ * @param offset the number of offset elements
+ */
+ export declare function skipIterable<T>(
+  it: Iterable<T>,
+  offset: number,
+): Iterable<T>;
+
+/**
+ * Skips the first offset elements and then yields the next ones
+ * @param it the original async iterable
+ * @param offset the number of offset elements
+ */
+export declare function skipAsyncIterable<T>(
+  it: AnyIterable<T>,
+  offset: number,
 ): AsyncIterable<T>;
 /**
  * Returns an iterable that stop to iterate over the values of the original iterable when the informed condition resolves to true.

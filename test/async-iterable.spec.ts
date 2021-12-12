@@ -7,11 +7,17 @@ import {
   addMapAsync,
   addTakeWhileAsync,
   addFilterAsync,
+  skipAsyncIterable,
+  flatMapAsyncIterable,
 } from '../index';
 import { expect } from 'chai';
 import { stub } from 'sinon';
 import 'chai-callslike';
 import { getAsync } from './get-async';
+
+async function* toAsync(items) {
+  yield* items;
+}
 
 describe('AsyncIterable', () => {
   it('should apply map', async () => {
@@ -180,5 +186,88 @@ describe('AsyncIterable', () => {
     expect(callFilter).to.have.callsLike([1], [2], [3], [4]);
     expect(callTakeWhile).to.have.callsLike([1], [3], [4]);
     expect(callMap).to.have.callsLike([1], [3]);
+  });
+
+  it('should work with skip operation over an array', async () => {
+    const original = [1, 2, 3, 4, 5, 6];
+
+    const skipped = skipAsyncIterable(original, 2);
+    const filtered = filterAsyncIterable(skipped, (x) => x % 2 === 0);
+
+    const result = await augmentativeToArrayAsync.call(filtered);
+
+    expect(result).to.be.eql([4, 6]);
+  });
+
+  it('should work with skip operation over an array with negative skip', async () => {
+    const original = [2, 3, 4, 5, 6];
+
+    const skipped = skipAsyncIterable(original, -2);
+    const filtered = filterAsyncIterable(skipped, (x) => x % 2 === 0);
+
+    const result = await augmentativeToArrayAsync.call(filtered);
+
+    expect(result).to.be.eql([2, 4, 6]);
+  });
+
+  it('should work with skip operation over an async iterable', async () => {
+    const original = toAsync([1, 2, 3, 4, 5, 6]);
+
+    const skipped = skipAsyncIterable(original, 2);
+    const filtered = filterAsyncIterable(skipped, (x) => x % 2 === 0);
+
+    const result = await augmentativeToArrayAsync.call(filtered);
+
+    expect(result).to.be.eql([4, 6]);
+  });
+
+  it('should work with skip operation over an augmentative iterable', async () => {
+    const original = [1, 2, 3, 4, 5, 6];
+
+    const filtered = filterAsyncIterable(original, (x) => x % 2 === 0);
+    const skipped = skipAsyncIterable(filtered, 2);
+
+    const result = await augmentativeToArrayAsync.call(skipped);
+
+    expect(result).to.be.eql([6]);
+  });
+
+  it('should apply flatMap over array', async () => {
+    const original = [
+      [1, 2, 3],
+      [4, 5, 6],
+      [7, 8, 9],
+    ];
+
+    const transformed = flatMapAsyncIterable(original);
+    const result = await augmentativeToArrayAsync.call(transformed);
+
+    expect(result).to.be.eql([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  });
+
+  it('should apply flatMap over array of async iterable', async () => {
+    const original = [
+      toAsync([1, 2, 3]),
+      toAsync([4, 5, 6]),
+      toAsync([7, 8, 9]),
+    ];
+
+    const transformed = flatMapAsyncIterable(original);
+    const result = await augmentativeToArrayAsync.call(transformed);
+
+    expect(result).to.be.eql([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  });
+
+  it('should apply flatMap over an async iterable of async iterables', async () => {
+    const original = toAsync([
+      toAsync([1, 2, 3]),
+      toAsync([4, 5, 6]),
+      toAsync([7, 8, 9]),
+    ]);
+
+    const transformed = flatMapAsyncIterable(original);
+    const result = await augmentativeToArrayAsync.call(transformed);
+
+    expect(result).to.be.eql([1, 2, 3, 4, 5, 6, 7, 8, 9]);
   });
 });
