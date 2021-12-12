@@ -135,18 +135,20 @@ export declare function mapAsyncIterable<T, R>(
  * @param it the original iterable
  * @param mapper the mapping function
  */
-export declare function flatMapIterable<T>(
+export declare function flatMapIterable<T, R = T extends AnyIterable<infer Sub> ? Sub : never>(
   it: Iterable<T>,
-): Iterable<T extends Iterable<infer R> ? R : never>;
+  mapper?: AsyncMapper<T, AnyIterable<R>>,
+): Iterable<R>;
 
 /**
  * Add a flatMap augment for the iterable. It will returns a new iterable with tne new mapped item type.
  * @param it the original iterable
  * @param mapper the mapping function
  */
-export declare function flatMapAsyncIterable<T>(
+export declare function flatMapAsyncIterable<T, R = T extends AnyIterable<infer Sub> ? Sub : never>(
   it: AnyIterable<T>,
-): AsyncIterable<T extends AsyncIterable<infer R> ? R : never>;
+  mapper?: AsyncMapper<T, AnyIterable<R>>,
+): AsyncIterable<R>;
 /**
  * Skips the first offset elements and then yields the next ones
  * @param it the original iterable
