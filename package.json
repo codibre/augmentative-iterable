@@ -15,7 +15,7 @@
     "index.d.ts"
   ],
   "types": "index.d.ts",
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {
     "format": "prettier --write src/**/*.ts tst/**/*.ts",
     "lint": "npm run lint:format && npm run lint:style",
