@@ -1,5 +1,8 @@
 
-## 1.5.1
+## 1.5.2
+* 7297663 fix: removing syntax incompatible with node 10
+## v1.5.1
+* b8a42f1 1.5.1
 * 36dcc46 chore: fixing dev dependency vulnerabilities
 * f1fdaf3 fix: [DEP0128] DeprecationWarning: Invalid 'main' field in package.json
 * 08991fa Fix [DEP0128] DeprecationWarning: Invalid 'main' field in package.json #19
