@@ -1,5 +1,14 @@
 
-## 1.5.0
+## 1.5.1
+* 36dcc46 chore: fixing dev dependency vulnerabilities
+* f1fdaf3 fix: [DEP0128] DeprecationWarning: Invalid 'main' field in package.json
+* 08991fa Fix [DEP0128] DeprecationWarning: Invalid 'main' field in package.json #19
+* 2cbc4c8 Merge pull request #18 from Codibre/dependabot/npm_and_yarn/minimist-1.2.6
+* 945ce0a Bump minimist from 1.2.5 to 1.2.6
+* 3598342 Merge pull request #17 from Codibre/dependabot/npm_and_yarn/shelljs-0.8.5
+* a490e21 Bump shelljs from 0.8.4 to 0.8.5
+## v1.5.0
+* 746b782 1.5.0
 * 9f8eb9f Merge pull request #16 from Codibre/sync-async-iterable
 * e6554d0 chore: making benchmark run on push
 * ec388b5 chore: excluding test-benchmark from coverage
