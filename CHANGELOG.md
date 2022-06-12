@@ -1,5 +1,8 @@
 
-## 1.5.2
+## 1.5.3
+* f64d783 fix: removing syntax incompatible with node 10
+## v1.5.2
+* 6ba1d11 1.5.2
 * 7297663 fix: removing syntax incompatible with node 10
 ## v1.5.1
 * b8a42f1 1.5.1
