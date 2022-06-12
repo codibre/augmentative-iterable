@@ -1,5 +1,8 @@
 
-## 1.5.3
+## 1.5.4
+* d20d3b1 fix: removing slow flat operation
+## v1.5.3
+* fc1dc39 1.5.3
 * f64d783 fix: removing syntax incompatible with node 10
 ## v1.5.2
 * 6ba1d11 1.5.2
