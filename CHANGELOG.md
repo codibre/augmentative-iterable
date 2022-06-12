@@ -1,5 +1,8 @@
 
-## 1.5.4
+## 1.5.5
+* 90ecbd9 fix: micro performance and memory improvements
+## v1.5.4
+* d34aaed 1.5.4
 * d20d3b1 fix: removing slow flat operation
 ## v1.5.3
 * fc1dc39 1.5.3
