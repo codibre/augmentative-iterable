@@ -1,5 +1,8 @@
 
-## 1.5.5
+## 1.5.6
+* cf9ffa3 fix: more micro optmizations
+## v1.5.5
+* 8be84ac 1.5.5
 * 90ecbd9 fix: micro performance and memory improvements
 ## v1.5.4
 * d34aaed 1.5.4
