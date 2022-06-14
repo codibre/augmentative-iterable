@@ -1,5 +1,8 @@
 
-## 1.5.7
+## 1.5.8
+* b261fcd fix: optimizing augmentativeIterateIterable
+## v1.5.7
+* b678a3a 1.5.7
 * ae1cdb1 fix: optimizing resolveState
 ## v1.5.6
 * eacd06d 1.5.6
