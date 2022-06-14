@@ -1,5 +1,8 @@
 
-## 1.5.6
+## 1.5.7
+* ae1cdb1 fix: optimizing resolveState
+## v1.5.6
+* eacd06d 1.5.6
 * cf9ffa3 fix: more micro optmizations
 ## v1.5.5
 * 8be84ac 1.5.5
