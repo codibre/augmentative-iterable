@@ -1,5 +1,8 @@
 
-## 1.5.8
+## 1.5.9
+* 758d9c6 fix: performance improvement on async iteration
+## v1.5.8
+* 4dfed59 1.5.8
 * b261fcd fix: optimizing augmentativeIterateIterable
 ## v1.5.7
 * b678a3a 1.5.7
