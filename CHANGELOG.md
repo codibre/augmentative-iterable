@@ -1,5 +1,8 @@
 
-## 1.5.9
+## 1.5.10
+* 4dfb1ce fix: speeding up foreach async operation
+## v1.5.9
+* 64b0605 1.5.9
 * 758d9c6 fix: performance improvement on async iteration
 ## v1.5.8
 * 4dfed59 1.5.8
