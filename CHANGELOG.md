@@ -1,5 +1,7 @@
 
-## 1.5.10
+## 1.5.11
+* c34530a fix: improving sync iteration performance
+* 7ab8740 1.5.10
 * 4dfb1ce fix: speeding up foreach async operation
 ## v1.5.9
 * 64b0605 1.5.9
@@ -23,6 +25,23 @@
 * fc1dc39 1.5.3
 * f64d783 fix: removing syntax incompatible with node 10
 ## v1.5.2
+## v1.5.10
+* 7ab8740 1.5.10
+* 4dfb1ce fix: speeding up foreach async operation
+* 64b0605 1.5.9
+* 758d9c6 fix: performance improvement on async iteration
+* 4dfed59 1.5.8
+* b261fcd fix: optimizing augmentativeIterateIterable
+* b678a3a 1.5.7
+* ae1cdb1 fix: optimizing resolveState
+* eacd06d 1.5.6
+* cf9ffa3 fix: more micro optmizations
+* 8be84ac 1.5.5
+* 90ecbd9 fix: micro performance and memory improvements
+* d34aaed 1.5.4
+* d20d3b1 fix: removing slow flat operation
+* fc1dc39 1.5.3
+* f64d783 fix: removing syntax incompatible with node 10
 * 6ba1d11 1.5.2
 * 7297663 fix: removing syntax incompatible with node 10
 ## v1.5.1
