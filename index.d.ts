@@ -118,7 +118,7 @@ export declare function filterAsyncIterable<T>(
 export declare function mapIterable<T, R>(
   it: Iterable<T>,
   mapper: Mapper<T, R>,
-): Iterable<T>;
+): Iterable<R>;
 
 /**
  * Returns an async iterable that maps each value of the async iterable using the function provided
@@ -128,7 +128,7 @@ export declare function mapIterable<T, R>(
 export declare function mapAsyncIterable<T, R>(
   it: AnyIterable<T>,
   mapper: AsyncMapper<T, R>,
-): AsyncIterable<T>;
+): AsyncIterable<R>;
 
 /**
  * Add a flatMap augment for the iterable. It will returns a new iterable with tne new mapped item type.
@@ -213,7 +213,7 @@ export declare function addFilterAsync<T>(
 export declare function addMap<T, R>(
   it: Iterable<T>,
   mapper: Mapper<T, R>,
-): Iterable<T>;
+): Iterable<R>;
 
 /**
  * Add a map augment for the async iterable. It will returns a new iterable if the informed is not already augmentative.
@@ -223,7 +223,7 @@ export declare function addMap<T, R>(
 export declare function addMapAsync<T, R>(
   it: AnyIterable<T>,
   mapper: AsyncMapper<T, R>,
-): AsyncIterable<T>;
+): AsyncIterable<R>;
 /**
  * Add a takeWhile augment for the iterable. It will returns a new iterable if the informed is not already augmentative.
  * @param it the original iterable
