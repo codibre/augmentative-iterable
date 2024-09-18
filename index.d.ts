@@ -1,6 +1,4 @@
 /* eslint-disable no-magic-numbers */
-export declare const augments: unique symbol;
-export declare const baseIterable: unique symbol;
 export declare type AnyIterable<T> = Iterable<T> | AsyncIterable<T>;
 /**
  * Represents a predicate on type `T`.<br>
@@ -96,151 +94,188 @@ export declare function augmentativeToArrayAsync<T>(
  * Returns an iterable that returns only the values of the original iterable that passes the informed predicate
  * @param it the original iterable
  * @param mapper the predicate function
+ * @param isImmutable defines if the next augmentations will emit a new iterable or change the current in place. Only takes effect at the first one of the augmentation chain
  */
 export declare function filterIterable<T>(
   it: Iterable<T>,
   predicate: Predicate<T>,
+  isImmutable?: boolean,
 ): Iterable<T>;
 /**
  * Returns an async iterable that returns only the values of the original async iterable that passes the informed predicate
  * @param it the original async iterable or iterable
  * @param mapper the predicate function
+ * @param isImmutable defines if the next augmentations will emit a new iterable or change the current in place. Only takes effect at the first one of the augmentation chain
  */
 export declare function filterAsyncIterable<T>(
   it: AnyIterable<T>,
   predicate: AsyncPredicate<T>,
+  isImmutable?: boolean,
 ): AsyncIterable<T>;
 /**
  * Returns an iterable that maps each value of the iterable using the function provided
  * @param it the original iterable
  * @param mapper the mapping function
+ * @param isImmutable defines if the next augmentations will emit a new iterable or change the current in place. Only takes effect at the first one of the augmentation chain
  */
 export declare function mapIterable<T, R>(
   it: Iterable<T>,
   mapper: Mapper<T, R>,
+  isImmutable?: boolean,
 ): Iterable<R>;
 
 /**
  * Returns an async iterable that maps each value of the async iterable using the function provided
  * @param it the original async iterable or iterable
  * @param mapper the mapping function
+ * @param isImmutable defines if the next augmentations will emit a new iterable or change the current in place. Only takes effect at the first one of the augmentation chain
  */
 export declare function mapAsyncIterable<T, R>(
   it: AnyIterable<T>,
   mapper: AsyncMapper<T, R>,
+  isImmutable?: boolean,
 ): AsyncIterable<R>;
 
 /**
  * Add a flatMap augment for the iterable. It will returns a new iterable with tne new mapped item type.
  * @param it the original iterable
  * @param mapper the mapping function
+ * @param isImmutable defines if the next augmentations will emit a new iterable or change the current in place. Only takes effect at the first one of the augmentation chain
  */
-export declare function flatMapIterable<T, R = T extends AnyIterable<infer Sub> ? Sub : never>(
+export declare function flatMapIterable<
+  T,
+  R = T extends AnyIterable<infer Sub> ? Sub : never
+>(
   it: Iterable<T>,
   mapper?: AsyncMapper<T, AnyIterable<R>>,
+  isImmutable?: boolean,
 ): Iterable<R>;
 
 /**
  * Add a flatMap augment for the iterable. It will returns a new iterable with tne new mapped item type.
  * @param it the original iterable
  * @param mapper the mapping function
+ * @param isImmutable defines if the next augmentations will emit a new iterable or change the current in place. Only takes effect at the first one of the augmentation chain
  */
-export declare function flatMapAsyncIterable<T, R = T extends AnyIterable<infer Sub> ? Sub : never>(
+export declare function flatMapAsyncIterable<
+  T,
+  R = T extends AnyIterable<infer Sub> ? Sub : never
+>(
   it: AnyIterable<T>,
   mapper?: AsyncMapper<T, AnyIterable<R>>,
+  isImmutable?: boolean,
 ): AsyncIterable<R>;
 /**
  * Skips the first offset elements and then yields the next ones
  * @param it the original iterable
  * @param offset the number of offset elements
  */
- export declare function skipIterable<T>(
+export declare function skipIterable<T>(
   it: Iterable<T>,
   offset: number,
+  isImmutable?: boolean,
 ): Iterable<T>;
 
 /**
  * Skips the first offset elements and then yields the next ones
  * @param it the original async iterable
  * @param offset the number of offset elements
+ * @param isImmutable defines if the next augmentations will emit a new iterable or change the current in place. Only takes effect at the first one of the augmentation chain
  */
 export declare function skipAsyncIterable<T>(
   it: AnyIterable<T>,
   offset: number,
+  isImmutable?: boolean,
 ): AsyncIterable<T>;
 /**
  * Returns an iterable that stop to iterate over the values of the original iterable when the informed condition resolves to true.
  * @param it the original iterable
  * @param predicate the stop condition
+ * @param isImmutable defines if the next augmentations will emit a new iterable or change the current in place. Only takes effect at the first one of the augmentation chain
  */
 export declare function takeWhileIterable<T>(
   it: Iterable<T>,
   predicate: Predicate<T>,
+  isImmutable?: boolean,
 ): Iterable<T>;
 /**
  * Returns an async iterable that stop to iterate over the values of the original async iterable when the informed condition resolves to true.
  * @param it the original iterable or async iterable
  * @param predicate the stop condition
+ * @param isImmutable defines if the next augmentations will emit a new iterable or change the current in place. Only takes effect at the first one of the augmentation chain
  */
 export declare function takeWhileAsyncIterable<T>(
   it: AnyIterable<T>,
   predicate: AsyncPredicate<T>,
+  isImmutable?: boolean,
 ): AsyncIterable<T>;
 
 /**
  * Add a filter augment for the iterable. It will returns a new iterable if the informed is not already augmentative.
  * @param it the original iterable
  * @param mapper the predicate function
+ * @param isImmutable defines if the next augmentations will emit a new iterable or change the current in place. Only takes effect at the first one of the augmentation chain
  */
 export declare function addFilter<T>(
   it: Iterable<T>,
   predicate: Predicate<T>,
+  isImmutable?: boolean,
 ): Iterable<T>;
 /**
  * Add a filter augment for the async iterable. It will returns a new iterable if the informed is not already augmentative.
  * @param it the original async iterable or iterable
  * @param mapper the predicate function
+ * @param isImmutable defines if the next augmentations will emit a new iterable or change the current in place. Only takes effect at the first one of the augmentation chain
  */
 export declare function addFilterAsync<T>(
   it: AnyIterable<T>,
   predicate: AsyncPredicate<T>,
+  isImmutable?: boolean,
 ): AsyncIterable<T>;
 /**
  * Add a map augment for the iterable. It will returns a new iterable if the informed is not already augmentative.
  * @param it the original iterable
  * @param mapper the mapping function
+ * @param isImmutable defines if the next augmentations will emit a new iterable or change the current in place. Only takes effect at the first one of the augmentation chain
  */
 export declare function addMap<T, R>(
   it: Iterable<T>,
   mapper: Mapper<T, R>,
+  isImmutable?: boolean,
 ): Iterable<R>;
 
 /**
  * Add a map augment for the async iterable. It will returns a new iterable if the informed is not already augmentative.
  * @param it the original async iterable or iterable
  * @param mapper the mapping function
+ * @param isImmutable defines if the next augmentations will emit a new iterable or change the current in place. Only takes effect at the first one of the augmentation chain
  */
 export declare function addMapAsync<T, R>(
   it: AnyIterable<T>,
   mapper: AsyncMapper<T, R>,
+  isImmutable?: boolean,
 ): AsyncIterable<R>;
 /**
  * Add a takeWhile augment for the iterable. It will returns a new iterable if the informed is not already augmentative.
  * @param it the original iterable
  * @param predicate the stop condition
+ * @param isImmutable defines if the next augmentations will emit a new iterable or change the current in place. Only takes effect at the first one of the augmentation chain
  */
 export declare function addTakeWhile<T>(
   it: Iterable<T>,
   predicate: Predicate<T>,
+  isImmutable?: boolean,
 ): Iterable<T>;
 /**
  * Add a takeWhile augment for the async iterable. It will returns a new iterable if the informed is not already augmentative.
  * @param it the original iterable or async iterable
  * @param predicate the stop condition
+ * @param isImmutable defines if the next augmentations will emit a new iterable or change the current in place. Only takes effect at the first one of the augmentation chain
  */
 export declare function addTakeWhileAsync<T>(
   it: AnyIterable<T>,
   predicate: AsyncPredicate<T>,
+  isImmutable?: boolean,
 ): AsyncIterable<T>;
 
 /**

@@ -189,7 +189,7 @@ describe('Iterable', () => {
     expect(result).to.be.eql([5, 8, 11]);
   });
 
-  it('should add an augmentative argument when iterable is already augmentative', async () => {
+  it('should add an augmentative argument when iterable is already augmentative when iterable is mutable', async () => {
     const original = [1, 2, 3];
     const result: number[] = [];
 
@@ -201,6 +201,28 @@ describe('Iterable', () => {
 
     expect(map1).to.be.eq(map2);
     expect(result).to.be.eql([7, 10, 13]);
+  });
+
+  it('should support branching when iterable is immutable', () => {
+    const original = [1, 2, 3];
+    const result0: number[] = [];
+    const result1: number[] = [];
+    const result2: number[] = [];
+
+    const map1 = mapIterable(original, (x) => x * 3, true);
+    const map2 = addMap(map1, (x) => x + 2);
+
+    augmentativeForEach.call(map2, (async (x: number) =>
+      result2.push(x + 2)) as any);
+    augmentativeForEach.call(map1, (async (x: number) =>
+      result1.push(x + 2)) as any);
+    augmentativeForEach.call(original, (async (x: number) =>
+      result0.push(x + 2)) as any);
+
+    expect(map1).not.to.be.eq(map2);
+    expect(result0).to.be.eql([3, 4, 5]);
+    expect(result1).to.be.eql([5, 8, 11]);
+    expect(result2).to.be.eql([7, 10, 13]);
   });
 
   it('should return an augmentative iterable with adding operation when informed iterable is not augmentative', async () => {
