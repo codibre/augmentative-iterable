@@ -1,4 +1,14 @@
 
+## 1.6.0
+* ba7cd32 feat: adding support for immutability (#28)
+* b14f137 fix: incorrect mapper Iterable types (#27)
+* 6dbe8b8 Merge pull request #23 from Codibre/dependabot/npm_and_yarn/minimatch-3.1.2
+* 9e260b3 Bump minimatch from 3.0.4 to 3.1.2
+* 544f86c chore: Merge pull request #22 from Codibre/dependabot/npm_and_yarn/json5-1.0.2
+* d3772a6 chore: Merge pull request #21 from Codibre/dependabot/npm_and_yarn/json5-and-tsconfig-paths-2.2.3
+* ecebbbf Bump json5 from 1.0.1 to 1.0.2
+* 546d7fd Bump json5 and tsconfig-paths
+* 90fe099 fix: simplifying async iteration code
 ## 1.5.11
 * c34530a fix: improving sync iteration performance
 * 7ab8740 1.5.10
@@ -25,6 +35,9 @@
 * fc1dc39 1.5.3
 * f64d783 fix: removing syntax incompatible with node 10
 ## v1.5.2
+## v1.5.11
+* 25c2cfe 1.5.11
+* c34530a fix: improving sync iteration performance
 ## v1.5.10
 * 7ab8740 1.5.10
 * 4dfb1ce fix: speeding up foreach async operation
