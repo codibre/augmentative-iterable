@@ -6,7 +6,8 @@
     "types": [
       "node",
       "mocha",
-    ]
+    ],
+    "esModuleInterop": true
   },
   "include": ["./lib", "./test", "index.js"]
 }

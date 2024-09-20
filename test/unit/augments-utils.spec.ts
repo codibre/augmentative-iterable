@@ -1,6 +1,10 @@
-import { resolverAsync, resolver, isPromiseLike } from '../lib/augments-utils';
+import {
+  resolverAsync,
+  resolver,
+  isPromiseLike,
+} from '../../lib/augments-utils';
 import { expect } from 'chai';
-import { augmentativeToArrayAsync, itClone } from '../index';
+import { augmentativeToArrayAsync, itClone } from '../../index';
 import { getAsync } from './get-async';
 
 describe('augments-utils', () => {

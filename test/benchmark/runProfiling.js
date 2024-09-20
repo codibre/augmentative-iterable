@@ -1,4 +1,6 @@
-const runs = process.env.RUNS || 3;
+const DEFAULT_RUNS = 3;
+/* eslint-disable @typescript-eslint/no-use-before-define */
+const runs = process.env.RUNS || DEFAULT_RUNS;
 
 async function runProfiling(name, run) {
   console.log('');
@@ -23,9 +25,11 @@ async function runProfiling(name, run) {
   }
 }
 
+const kilo = 1024;
+const percent = 100;
 function currentMemoryUsage({runGarbageCollector}) {
   if (runGarbageCollector) global.gc();
-  return Math.round((process.memoryUsage().heapUsed / 1024 / 1024) * 100) / 100;
+  return Math.round((process.memoryUsage().heapUsed / kilo / kilo) * percent) / percent;
 }
 
 module.exports = runProfiling;

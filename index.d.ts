@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-magic-numbers */
 export declare type AnyIterable<T> = Iterable<T> | AsyncIterable<T>;
 /**

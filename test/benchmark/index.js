@@ -1,7 +1,10 @@
+/* eslint-disable prefer-const */
 const fs = require('fs');
 const readline = require('readline');
 const runProfiling = require('./runProfiling');
-const { augmentativeForEachAsync } = require('../lib/augmentative-async-iterable');
+const { augmentativeForEachAsync } = require('../../lib/augmentative-async-iterable');
+const { arrayToArrayBenchmark } = require('./array-to-arrray-benchmark.spec');
+const { iterableToArrayBenchmark } = require('./iterable-to-arrray-benchmark.spec');
 
 
 function getAsyncIterable(rl) {
@@ -89,11 +92,11 @@ function getAsyncIterable(rl) {
 (async () => {
   await runProfiling('readline stream interface', () => new Promise((resolve, reject) => {
     const rl = readline.createInterface({
-      input: fs.createReadStream('./test-benchmark/big.txt'),
+      input: fs.createReadStream('./test/benchmark/big.txt'),
     });
 
     let i = 0;
-    rl.on('line', (line) => {
+    rl.on('line', () => {
       i += 1;
     });
 
@@ -107,11 +110,11 @@ function getAsyncIterable(rl) {
 
   await runProfiling('readline async iteration', async () => {
     const rl = readline.createInterface({
-        input: fs.createReadStream('./test-benchmark/big.txt'),
+        input: fs.createReadStream('./test/benchmark/big.txt'),
       });
 
       let i = 0;
-      for await (const line of rl) {
+      for await (const _ of rl) {
         i += 1;
       }
       console.log(`Read ${i} lines`);
@@ -119,12 +122,12 @@ function getAsyncIterable(rl) {
 
   await runProfiling('readline manual readline async iterable', async () => {
     const rl = readline.createInterface({
-        input: fs.createReadStream('./test-benchmark/big.txt'),
+        input: fs.createReadStream('./test/benchmark/big.txt'),
       });
       const iterable = getAsyncIterable(rl);
 
       let i = 0;
-      for await (const line of iterable) {
+      for await (const _ of iterable) {
         i += 1;
       }
 
@@ -133,7 +136,7 @@ function getAsyncIterable(rl) {
 
   await runProfiling('readline augmentative-iterable', async () => {
     const rl = readline.createInterface({
-        input: fs.createReadStream('./test-benchmark/big.txt'),
+        input: fs.createReadStream('./test/benchmark/big.txt'),
       });
       const iterable = getAsyncIterable(rl);
 
@@ -142,5 +145,7 @@ function getAsyncIterable(rl) {
 
       console.log(`Read ${i} lines`);
    });
-})();
 
+  await arrayToArrayBenchmark();
+  await iterableToArrayBenchmark();
+})();

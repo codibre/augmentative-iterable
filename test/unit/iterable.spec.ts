@@ -10,7 +10,7 @@ import {
   addMapAsync,
   flatMapIterable,
   skipIterable,
-} from '../index';
+} from '../../index';
 import { expect } from 'chai';
 import { stub } from 'sinon';
 import 'chai-callslike';
