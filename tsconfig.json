@@ -1,6 +1,14 @@
 {
-  "extends": "@codibre/confs/tsconfig.json",
   "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
+    "strict": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strictNullChecks": true,
+    "moduleResolution": "node",
+    "lib": ["es6", "dom"],
+    "sourceMap": false,
     "allowJs": true,
     "rootDir": ".",
     "declaration": true
