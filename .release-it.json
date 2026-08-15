@@ -1,0 +1,14 @@
+{
+  "npm": {
+    "publish": false,
+    "skipChecks": true
+  },
+  "git": {
+    "requireCleanWorkingDir": false
+  },
+  "hooks": {
+    "afterBump": [
+      "npm publish --provenance --access public"
+    ]
+  }
+}

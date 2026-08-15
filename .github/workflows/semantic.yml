@@ -27,26 +27,13 @@ jobs:
         with:
           node-version: "26.x"
           cache: npm
-          registry-url: "https://registry.npmjs.org"
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
         run: npm ci
 
       - name: Build
         run: npm run build --if-present
-
-      - name: Get OIDC Token
-        id: oidc
-        run: |
-          IDENTITY_TOKEN=$(curl -sL "${ACTIONS_ID_TOKEN_REQUEST_URL}?audience=https://registry.npmjs.org" \
-            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" | jq -r '.value')
-          echo "oidc-token=${IDENTITY_TOKEN}" >> $GITHUB_OUTPUT
-
-      - name: Configure npm with OIDC token
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${{ steps.oidc.outputs.oidc-token }}" > ~/.npmrc
-          echo "registry=https://registry.npmjs.org/" >> ~/.npmrc
-          echo "always-auth=true" >> ~/.npmrc
 
       - name: Install release-it for CI
         run: npm install -g release-it@19.0.6 @release-it/conventional-changelog@10.0.1
