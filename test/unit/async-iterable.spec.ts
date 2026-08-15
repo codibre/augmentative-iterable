@@ -1,3 +1,4 @@
+import { describe, it, expect, vi } from 'vitest';
 import {
   mapAsyncIterable,
   augmentativeToArrayAsync,
@@ -10,9 +11,6 @@ import {
   skipAsyncIterable,
   flatMapAsyncIterable,
 } from '../../index';
-import { expect } from 'chai';
-import { stub } from 'sinon';
-import 'chai-callslike';
 import { getAsync } from './get-async';
 
 async function* toAsync(items) {
@@ -25,7 +23,7 @@ describe('AsyncIterable', () => {
 
     const transformed = mapAsyncIterable(original, (x) => x * 7);
 
-    expect(await augmentativeToArrayAsync.call(transformed)).to.be.eql([
+    expect(await augmentativeToArrayAsync.call(transformed)).toEqual([
       7,
       14,
       21,
@@ -37,11 +35,7 @@ describe('AsyncIterable', () => {
 
     const transformed = filterAsyncIterable(original, (x) => x % 2 === 0);
 
-    expect(await augmentativeToArrayAsync.call(transformed)).to.be.eql([
-      2,
-      4,
-      6,
-    ]);
+    expect(await augmentativeToArrayAsync.call(transformed)).toEqual([2, 4, 6]);
   });
 
   it('should apply takeWhile', async () => {
@@ -49,11 +43,7 @@ describe('AsyncIterable', () => {
 
     const transformed = takeWhileAsyncIterable(original, (x) => x < 4);
 
-    expect(await augmentativeToArrayAsync.call(transformed)).to.be.eql([
-      1,
-      2,
-      3,
-    ]);
+    expect(await augmentativeToArrayAsync.call(transformed)).toEqual([1, 2, 3]);
   });
 
   it('should be augmented without modifying the original iterable', async () => {
@@ -66,8 +56,8 @@ describe('AsyncIterable', () => {
     );
     const resultTransformed = await augmentativeToArrayAsync.call(transformed);
 
-    expect(resultOriginal).to.be.eql([1, 2, 3]);
-    expect(resultTransformed).to.be.eql([3, 6, 9]);
+    expect(resultOriginal).toEqual([1, 2, 3]);
+    expect(resultTransformed).toEqual([3, 6, 9]);
   });
 
   it('should accumulate augmentative arguments', async () => {
@@ -77,11 +67,7 @@ describe('AsyncIterable', () => {
     const map2 = mapAsyncIterable(map1, async (x) => x + 2);
     const map3 = mapAsyncIterable(map2, (x) => x.toString());
 
-    expect(await augmentativeToArrayAsync.call(map3)).to.be.eql([
-      '5',
-      '8',
-      '11',
-    ]);
+    expect(await augmentativeToArrayAsync.call(map3)).toEqual(['5', '8', '11']);
   });
 
   it('should accumulate different augmentative arguments', async () => {
@@ -91,7 +77,7 @@ describe('AsyncIterable', () => {
     const map2 = filterAsyncIterable(map1, async (x) => x % 2 === 0);
     const map3 = takeWhileAsyncIterable(map2, async (x) => x < 15);
 
-    expect(await augmentativeToArrayAsync.call(map3)).to.be.eql([6, 12]);
+    expect(await augmentativeToArrayAsync.call(map3)).toEqual([6, 12]);
   });
 
   it('should process an for each properly', async () => {
@@ -103,7 +89,7 @@ describe('AsyncIterable', () => {
       result.push(item + 2);
     }
 
-    expect(result).to.be.eql([5, 8, 11]);
+    expect(result).toEqual([5, 8, 11]);
   });
 
   it('should process an augmentative forEach properly', async () => {
@@ -114,7 +100,7 @@ describe('AsyncIterable', () => {
     await augmentativeForEachAsync.call(map1, ((x: number) =>
       result.push(x + 2)) as any);
 
-    expect(result).to.be.eql([5, 8, 11]);
+    expect(result).toEqual([5, 8, 11]);
   });
 
   it('should process an augmentative forEach with an async predicate properly', async () => {
@@ -125,7 +111,7 @@ describe('AsyncIterable', () => {
     await augmentativeForEachAsync.call(map1, (async (x: number) =>
       result.push(x + 2)) as any);
 
-    expect(result).to.be.eql([5, 8, 11]);
+    expect(result).toEqual([5, 8, 11]);
   });
 
   it('should add an augmentative argument when iterable is already augmentative when iterable is mutable', async () => {
@@ -138,8 +124,8 @@ describe('AsyncIterable', () => {
     await augmentativeForEachAsync.call(map1, (async (x: number) =>
       result.push(x + 2)) as any);
 
-    expect(map1).to.be.eq(map2);
-    expect(result).to.be.eql([7, 10, 13]);
+    expect(map1).toBe(map2);
+    expect(result).toEqual([7, 10, 13]);
   });
 
   it('should support branching when iterable is immutable', async () => {
@@ -158,10 +144,10 @@ describe('AsyncIterable', () => {
     await augmentativeForEachAsync.call(original, (async (x: number) =>
       result0.push(x + 2)) as any);
 
-    expect(map1).not.to.be.eq(map2);
-    expect(result0).to.be.eql([3, 4, 5]);
-    expect(result1).to.be.eql([5, 8, 11]);
-    expect(result2).to.be.eql([7, 10, 13]);
+    expect(map1).not.toBe(map2);
+    expect(result0).toEqual([3, 4, 5]);
+    expect(result1).toEqual([5, 8, 11]);
+    expect(result2).toEqual([7, 10, 13]);
   });
 
   it('should return an augmentative iterable with adding operation when informed iterable is not augmentative', async () => {
@@ -173,13 +159,13 @@ describe('AsyncIterable', () => {
     await augmentativeForEachAsync.call(map1, (async (x: number) =>
       result.push(x + 2)) as any);
 
-    expect(map1).to.be.not.eq(original);
-    expect(result).to.be.eql([5, 8, 11]);
+    expect(map1).not.toBe(original);
+    expect(result).toEqual([5, 8, 11]);
   });
 
   it('should stop to process augments when a stop is signalized', async () => {
     const original = [1, 2, 3, 4, 3];
-    const call = stub();
+    const call = vi.fn();
 
     const takeWhile = addTakeWhileAsync(original, (x) => x < 4);
     const target = addFilterAsync(takeWhile, (x) => {
@@ -189,14 +175,14 @@ describe('AsyncIterable', () => {
 
     const result = await augmentativeToArrayAsync.call(target);
 
-    expect(call.callCount).to.be.eq(3);
-    expect(result).to.be.eql([2, 3]);
+    expect(call).toHaveBeenCalledTimes(3);
+    expect(result).toEqual([2, 3]);
   });
 
   it('should respect filter and takeWhile through operations', async () => {
-    const callFilter = stub().callsFake((x) => x !== 2);
-    const callTakeWhile = stub().callsFake((x) => x < 4);
-    const callMap = stub().callsFake((x) => x);
+    const callFilter = vi.fn((x: number) => x !== 2);
+    const callTakeWhile = vi.fn((x: number) => x < 4);
+    const callMap = vi.fn((x: number) => x);
     const original = [1, 2, 3, 4, 5];
     const filter = addFilterAsync(original, callFilter);
     const takeWhile = addTakeWhileAsync(filter, callTakeWhile);
@@ -204,10 +190,10 @@ describe('AsyncIterable', () => {
 
     const result = await augmentativeToArrayAsync.call(map);
 
-    expect(result).to.be.eql([1, 3]);
-    expect(callFilter).to.have.callsLike([1], [2], [3], [4]);
-    expect(callTakeWhile).to.have.callsLike([1], [3], [4]);
-    expect(callMap).to.have.callsLike([1], [3]);
+    expect(result).toEqual([1, 3]);
+    expect(callFilter.mock.calls).toEqual([[1], [2], [3], [4]]);
+    expect(callTakeWhile.mock.calls).toEqual([[1], [3], [4]]);
+    expect(callMap.mock.calls).toEqual([[1], [3]]);
   });
 
   it('should work with skip operation over an array', async () => {
@@ -218,7 +204,7 @@ describe('AsyncIterable', () => {
 
     const result = await augmentativeToArrayAsync.call(filtered);
 
-    expect(result).to.be.eql([4, 6]);
+    expect(result).toEqual([4, 6]);
   });
 
   it('should work with skip operation over an array with negative skip', async () => {
@@ -229,7 +215,7 @@ describe('AsyncIterable', () => {
 
     const result = await augmentativeToArrayAsync.call(filtered);
 
-    expect(result).to.be.eql([2, 4, 6]);
+    expect(result).toEqual([2, 4, 6]);
   });
 
   it('should work with skip operation over an async iterable', async () => {
@@ -240,7 +226,7 @@ describe('AsyncIterable', () => {
 
     const result = await augmentativeToArrayAsync.call(filtered);
 
-    expect(result).to.be.eql([4, 6]);
+    expect(result).toEqual([4, 6]);
   });
 
   it('should work with skip operation over an augmentative iterable', async () => {
@@ -251,7 +237,7 @@ describe('AsyncIterable', () => {
 
     const result = await augmentativeToArrayAsync.call(skipped);
 
-    expect(result).to.be.eql([6]);
+    expect(result).toEqual([6]);
   });
 
   it('should apply flatMap over array', async () => {
@@ -264,7 +250,7 @@ describe('AsyncIterable', () => {
     const transformed = flatMapAsyncIterable(original);
     const result = await augmentativeToArrayAsync.call(transformed);
 
-    expect(result).to.be.eql([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    expect(result).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
   });
 
   it('should apply flatMap over array of async iterable', async () => {
@@ -277,7 +263,7 @@ describe('AsyncIterable', () => {
     const transformed = flatMapAsyncIterable(original);
     const result = await augmentativeToArrayAsync.call(transformed);
 
-    expect(result).to.be.eql([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    expect(result).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
   });
 
   it('should apply flatMap over an async iterable of async iterables', async () => {
@@ -290,7 +276,7 @@ describe('AsyncIterable', () => {
     const transformed = flatMapAsyncIterable(original);
     const result = await augmentativeToArrayAsync.call(transformed);
 
-    expect(result).to.be.eql([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    expect(result).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
   });
 
   it('should apply flatMap over a sync iterable of async iterables', async () => {
@@ -303,7 +289,7 @@ describe('AsyncIterable', () => {
     const transformed = flatMapAsyncIterable(original);
     const result = await augmentativeToArrayAsync.call(transformed);
 
-    expect(result).to.be.eql([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    expect(result).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
   });
 
   it('should apply flatMap over an async iterable of sync iterables', async () => {
@@ -316,6 +302,6 @@ describe('AsyncIterable', () => {
     const transformed = flatMapAsyncIterable(original);
     const result = await augmentativeToArrayAsync.call(transformed);
 
-    expect(result).to.be.eql([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    expect(result).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
   });
 });
