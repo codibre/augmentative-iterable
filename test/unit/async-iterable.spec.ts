@@ -24,9 +24,7 @@ describe('AsyncIterable', () => {
     const transformed = mapAsyncIterable(original, (x) => x * 7);
 
     expect(await augmentativeToArrayAsync.call(transformed)).toEqual([
-      7,
-      14,
-      21,
+      7, 14, 21,
     ]);
   });
 
