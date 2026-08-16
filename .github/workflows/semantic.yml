@@ -37,6 +37,22 @@ jobs:
       - name: Install release-it for CI
         run: npm install -g release-it@19.0.6 @release-it/conventional-changelog@10.0.1
 
+      - name: Get OIDC Token
+        id: oidc
+        run: |
+          OIDC_TOKEN=$(curl -sL "${ACTIONS_ID_TOKEN_REQUEST_URL}?audience=https://registry.npmjs.org" \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" | jq -r '.value')
+          echo "oidc-token=${OIDC_TOKEN}" >> $GITHUB_OUTPUT
+
+      - name: Configure npm authentication for OIDC
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${OIDC_TOKEN}" > ~/.npmrc
+          echo "registry=https://registry.npmjs.org/" >> ~/.npmrc
+          echo "always-auth=true" >> ~/.npmrc
+          npm whoami || echo "npm whoami failed"
+        env:
+          OIDC_TOKEN: ${{ steps.oidc.outputs.oidc-token }}
+
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
