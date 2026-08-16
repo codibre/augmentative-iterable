@@ -1,3 +1,17 @@
+# Changelog
+
+## [1.6.1](https://github.com/codibre/augmentative-iterable/compare/v1.6.0...v1.6.1) (2026-08-16)
+
+### Bug Fixes
+
+* **ci:** drop Node 20 from benchmark matrix, remove invalid build step ([77189ff](https://github.com/codibre/augmentative-iterable/commit/77189ff1277896f6600bc95d9c86b7a3b7222923))
+* **ci:** pin pnpm version via packageManager field ([9a9827b](https://github.com/codibre/augmentative-iterable/commit/9a9827b0e560f9ba9ad4e4c63bdbff98135b9b01))
+* **release:** exchange OIDC identity token for npm OAuth token ([d7fb48b](https://github.com/codibre/augmentative-iterable/commit/d7fb48b7abc26348b64881e8de1a2ddae02f2016))
+* **release:** pass OIDC token via env var like nestjs-context ([fa862e5](https://github.com/codibre/augmentative-iterable/commit/fa862e5fe85b914d19dbcfec335fc0fc2704a142))
+* **release:** port pnpm-ready .release-it from nestjs-context + restore OIDC auth ([300a970](https://github.com/codibre/augmentative-iterable/commit/300a970eb3fb9a254bec6943abb358da651b6b57))
+* **semantic-release:** add missing plugin dependencies ([34ad1e8](https://github.com/codibre/augmentative-iterable/commit/34ad1e81bc3a60a42a4ba3fd13b23a289b1ec78d))
+* **semantic-release:** install plugins in CI instead of package.json ([db27a58](https://github.com/codibre/augmentative-iterable/commit/db27a58a199a10c2d87d115a598f030663183132))
+* update CI pipelines, Node 26.x, fix broken badges + eslint stack ([#32](https://github.com/codibre/augmentative-iterable/issues/32)) ([a4d0216](https://github.com/codibre/augmentative-iterable/commit/a4d02160e1161e98d615509aff3e536948a1c769))
 
 ## 1.6.0
 * ba7cd32 feat: adding support for immutability (#28)
